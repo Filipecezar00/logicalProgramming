@@ -47,24 +47,65 @@
             const input_categoria = document.getElementById("input_categoria"); 
             const input_quantidade = document.getElementById("input_quantidade"); 
             const btn_adicionar = document.getElementById("btn_adicionar"); 
+            const exibicao = document.getElementById("exibicao"); 
 
-            let produtos =[]
+             let produtos =[]
 
-            function gerenciarEstoque(){
-                let nome = input_nome.value;  
-                let categoria = input_categoria.value;
-                let quantidade = input_quantidade.value; 
+              let nome = input_nome.value;  
+              let categoria = input_categoria.value;
+              let quantidade = Number(input_quantidade.value); 
 
-                produtos.push(nome,categoria,quantidade); 
-                 for(const produto in produtos){
-                    const somaQuantidades = Number(quantidade) 
-                }
-                const object = {...produtos}; 
 
-               
-               
+             if(nome || categoria || quantidade ==""){
+                alert("Write something, this text is not correct"); 
+                return;  
             }
 
+            const produto ={
+                name:nome, 
+                category:categoria,
+                quantity:Number(quantidade)
+            }
+
+            produtos.push(produto); 
+            
+            nome = ""
+            categoria=""
+            quantidade="" 
+
+
+        function gerenciarEstoque(){
+         const relatorio = {}
+
+        for(p in produtos){
+          let TakeCategory =  produto[category]; 
+          let TakeQuantity = produto[quantity];  
+
+          if(TakeQuantity<5){
+            alert("Its necessary more products in System"); 
+          }else{
+            alert("There products in System"); 
+          }
+          return 
+        }
+
+        if(produto[category]==categoria){
+            alert("this category is the same in system")
+        }else{
+            relatorio = {itens:[],totalGeral:0} 
+            alert("New category available") 
+        }
+
+         relatorio[itens] = produto 
+         let somando = produtos[quantity] + relatorio[totalGeral] 
+
+         exibicao.innerText = `${relatorio}`  
+    }; 
+
+       btn_adicionar.addEventListener("click",()=>{
+                 
+        })
+        
     </script>
 </body>
 </html>
