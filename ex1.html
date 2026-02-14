@@ -49,61 +49,61 @@
             const btn_adicionar = document.getElementById("btn_adicionar"); 
             const exibicao = document.getElementById("exibicao"); 
 
-             let produtos =[]
+            let produtos =[]
 
+            
+
+        function gerenciarEstoque(){
+         const relatorio = {}
+
+        for(const p in produtos){
+          let TakeCategory =  produtos.category; 
+          let TakeQuantity = produtos.quantity;  
+
+          if(TakeQuantity<5){
+            console.log("Its necessary more products in System"); 
+          }else{
+            console.log("There products in System"); 
+          }
+          return 
+        }
+
+        if(produto.category==categoria){
+            console.log("this category is the same in system"); 
+        }else{
+            relatorio = {itens:[],totalGeral:0};  
+            console.log("New category available");  
+        }
+
+         relatorio.itens = produto 
+         let somando = produtos.quantity + relatorio.totalGeral 
+
+         let RelatorioPronto= `${relatorio}`
+    }; 
+
+       btn_adicionar.addEventListener("click",()=>{
               let nome = input_nome.value;  
               let categoria = input_categoria.value;
               let quantidade = Number(input_quantidade.value); 
 
+           const produto ={
+                name:nome,
+                category:categoria,
+                quantity:quantidade 
+            }
 
-             if(nome || categoria || quantidade ==""){
-                alert("Write something, this text is not correct"); 
+             if(!nome || !categoria || !quantidade ==""){
+                console.log("Write something, this text is not correct"); 
                 return;  
             }
 
-            const produto ={
-                name:nome, 
-                category:categoria,
-                quantity:Number(quantidade)
-            }
-
-            produtos.push(produto); 
+            produtos.push(...produto,nome,categoria,quantidade);   
             
             nome = ""
             categoria=""
             quantidade="" 
 
-
-        function gerenciarEstoque(){
-         const relatorio = {}
-
-        for(p in produtos){
-          let TakeCategory =  produto[category]; 
-          let TakeQuantity = produto[quantity];  
-
-          if(TakeQuantity<5){
-            alert("Its necessary more products in System"); 
-          }else{
-            alert("There products in System"); 
-          }
-          return 
-        }
-
-        if(produto[category]==categoria){
-            alert("this category is the same in system")
-        }else{
-            relatorio = {itens:[],totalGeral:0} 
-            alert("New category available") 
-        }
-
-         relatorio[itens] = produto 
-         let somando = produtos[quantity] + relatorio[totalGeral] 
-
-         exibicao.innerText = `${relatorio}`  
-    }; 
-
-       btn_adicionar.addEventListener("click",()=>{
-                 
+        exibicao.innerText=`${produtos}`
         })
         
     </script>
