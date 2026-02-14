@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>logica de programação</title>
+    <style>
+        #inputs{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 10px;
+        }
+        #exibicao{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: center;
+            margin: 30px;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="inputs">
+        <label for="input_nome">Nome:</label> 
+        <input type="text" id="input_nome" required> 
+
+        <label for="input_categoria">Categoria:</label>
+        <input type="text" id="input_categoria" required> 
+
+        <label for="input_quantidade">Quantidade:</label>
+        <input type="number" id="input_quantidade" required> 
+
+        <br>
+
+        <button type="button" id="btn_adicionar">Adicionar Categoria</button>
+    </div>
+
+    <div id="exibicao">
+        (ESPAÇO PARA RESPOSTA)
+    </div>
+    
+    <script>
+            const input_nome = document.getElementById("input_nome"); 
+            const input_categoria = document.getElementById("input_categoria"); 
+            const input_quantidade = document.getElementById("input_quantidade"); 
+            const btn_adicionar = document.getElementById("btn_adicionar"); 
+
+            let produtos =[]
+
+            function gerenciarEstoque(){
+                let nome = input_nome.value;  
+                let categoria = input_categoria.value;
+                let quantidade = input_quantidade.value; 
+
+                produtos.push(nome,categoria,quantidade); 
+                 for(const produto in produtos){
+                    const somaQuantidades = Number(quantidade) 
+                }
+                const object = {...produtos}; 
+
+               
+               
+            }
+
+    </script>
+</body>
+</html>
