@@ -33,6 +33,7 @@
         <label for="input_quantidade">Quantidade:</label>
         <input type="number" id="input_quantidade" required> 
 
+        la
         <br>
 
         <button type="button" id="btn_adicionar">Adicionar Categoria</button>
@@ -72,7 +73,7 @@
                 <ul>
                     ${relatorio[cat].itens.map(item=>{
                         const cor = item.quantity < 5 ? 'red' : 'green'; 
-                        const status = item.status < 5 ? "Reposição" : "OK";
+                        const status = item.quantity<5 ? "É necessario reposição" : "Tudo ok"
                         return `<li style="color:${cor}">${item.name}: ${item.quantity} (${status})</li>`; 
                     }).join('')}    
                     </ul>
