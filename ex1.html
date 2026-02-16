@@ -20,6 +20,18 @@
             margin: 30px;
             padding: 30px;
         }
+        #buttons{
+            display: flex;
+            justify-content:center;
+            flex-direction: row;
+            align-items: center;
+        }
+        #btn_filtrar{
+            margin: 5px;
+        }
+        #btn_adicionar{
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
@@ -33,11 +45,15 @@
         <label for="input_quantidade">Quantidade:</label>
         <input type="number" id="input_quantidade" required> 
 
-        la
+        <label for="input_preco">Preço:</label>
+        <input type="number" id="input_preco" required> 
         <br>
-
-        <button type="button" id="btn_adicionar">Adicionar Categoria</button>
     </div>
+
+        <div id="buttons">
+            <button type="button" id="btn_filtrar">Filtrar Críticos</button> 
+            <button type="button" id="btn_adicionar">Adicionar Categoria</button> 
+        </div>
 
     <div id="exibicao">
         (ESPAÇO PARA RESPOSTA)
@@ -47,6 +63,7 @@
             const input_nome = document.getElementById("input_nome"); 
             const input_categoria = document.getElementById("input_categoria"); 
             const input_quantidade = document.getElementById("input_quantidade"); 
+            const input_preco = document.getElementById("input_preco"); 
             const btn_adicionar = document.getElementById("btn_adicionar"); 
             const exibicao = document.getElementById("exibicao"); 
 
@@ -59,10 +76,11 @@
 
         produtos.forEach(p=>{
             if(!relatorio[p.category]){
-                relatorio[p.category] = {itens:[],totalGeral:0}; 
+                relatorio[p.category] = {itens:[],totalGeral:0,valorFinanceiro:0}; 
             }
             relatorio[p.category].itens.push(p); 
             relatorio[p.category].totalGeral +=p.quantity
+            relatorio[p.valorFinanceiro] = p.quantity * p.price
         })
         console.log(relatorio)
 
@@ -85,11 +103,13 @@
               let nome = input_nome.value;  
               let categoria = input_categoria.value;
               let quantidade = Number(input_quantidade.value); 
+              let preco = Number(input_preco.value); 
 
            const produto ={
                 name:nome,
                 category:categoria,
-                quantity:quantidade 
+                quantity:quantidade,
+                price:preco 
             }
 
             produtos.push(produto);    
