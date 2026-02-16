@@ -54,31 +54,30 @@
             
 
         function gerenciarEstoque(){
-         const relatorio = {}
+         let relatorio = {}
 
-        for(const p in produtos){
-          let TakeCategory =  produtos.category; 
-          let TakeQuantity = produtos.quantity;  
+        produtos.forEach(p=>{
+            if(!relatorio[p.category]){
+                relatorio[p.category] = {itens:[],totalGeral:0}; 
+            }
+            relatorio[p.category].itens.push(p); 
+            relatorio[p.category].totalGeral +=p.quantity
+        })
+        console.log(relatorio)
 
-          if(TakeQuantity<5){
-            console.log("Its necessary more products in System"); 
-          }else{
-            console.log("There products in System"); 
-          }
-          return 
-        }
-
-        if(produto.category==categoria){
-            console.log("this category is the same in system"); 
-        }else{
-            relatorio = {itens:[],totalGeral:0};  
-            console.log("New category available");  
-        }
-
-         relatorio.itens = produto 
-         let somando = produtos.quantity + relatorio.totalGeral 
-
-         let RelatorioPronto= `${relatorio}`
+         for(let cat in relatorio){
+            exibicao.innerHTML = `<p>
+                Categoria: ${cat} - - - - - - - - - - - - Total: ${relatorio[cat].totalGeral}
+                <p>
+                <ul>
+                    ${relatorio[cat].itens.map(item=>{
+                        const cor = item.quantity < 5 ? 'red' : 'green'; 
+                        const status = item.status < 5 ? "Reposição" : "OK";
+                        return `<li style="color:${cor}">${item.name}: ${item.quantity} (${status})</li>`; 
+                    }).join('')}    
+                    </ul>
+                 `
+         }
     }; 
 
        btn_adicionar.addEventListener("click",()=>{
@@ -92,18 +91,13 @@
                 quantity:quantidade 
             }
 
-             if(!nome || !categoria || !quantidade ==""){
-                console.log("Write something, this text is not correct"); 
-                return;  
-            }
-
-            produtos.push(...produto,nome,categoria,quantidade);   
+            produtos.push(produto);    
+            gerenciarEstoque(); 
             
             nome = ""
             categoria=""
             quantidade="" 
 
-        exibicao.innerText=`${produtos}`
         })
         
     </script>
