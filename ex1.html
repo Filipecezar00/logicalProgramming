@@ -73,31 +73,38 @@
 
         function gerenciarEstoque(){
          let relatorio = {}
-
+         let htmlFinal = ""
+        
         produtos.forEach(p=>{
             if(!relatorio[p.category]){
                 relatorio[p.category] = {itens:[],totalGeral:0,valorFinanceiro:0}; 
             }
             relatorio[p.category].itens.push(p); 
             relatorio[p.category].totalGeral +=p.quantity
-            relatorio[p.valorFinanceiro] = p.quantity * p.price
+            relatorio[p.category].valorFinanceiro += (p.quantity * p.price) 
         })
         console.log(relatorio)
 
          for(let cat in relatorio){
-            exibicao.innerHTML = `<p>
+            htmlFinal += `<p>
                 Categoria: ${cat} - - - - - - - - - - - - Total: ${relatorio[cat].totalGeral}
                 <p>
                 <ul>
                     ${relatorio[cat].itens.map(item=>{
                         const cor = item.quantity < 5 ? 'red' : 'green'; 
                         const status = item.quantity<5 ? "É necessario reposição" : "Tudo ok"
-                        return `<li style="color:${cor}">${item.name}: ${item.quantity} (${status})</li>`; 
+                        return `<li style="color:${cor}">${item.name}: ${item.quantity}, ${item.price} (${status})</li>`; 
                     }).join('')}    
                     </ul>
-                 `
-         }
+                `
+         } 
+         exibicao.innerHTML = htmlFinal
     }; 
+
+        function filtrandoCriticos(){
+
+        }
+
 
        btn_adicionar.addEventListener("click",()=>{
               let nome = input_nome.value;  
@@ -115,9 +122,10 @@
             produtos.push(produto);    
             gerenciarEstoque(); 
             
-            nome = ""
-            categoria=""
-            quantidade="" 
+            input_nome.value = ""
+            input_categoria.value=""
+            input_quantidade.value="" 
+            input_preco.value="" 
 
         })
         
