@@ -58,6 +58,10 @@
     <div id="exibicao">
         (ESPAÇO PARA RESPOSTA)
     </div>
+
+    <div id="dashboard">
+
+    </div>
     
     <script>
             const input_nome = document.getElementById("input_nome"); 
@@ -66,12 +70,39 @@
             const input_preco = document.getElementById("input_preco"); 
             const btn_adicionar = document.getElementById("btn_adicionar"); 
             const exibicao = document.getElementById("exibicao"); 
+            const dashboard = document.getElementById("dashboard"); 
 
             let produtos =[]
 
             
+        function GerarDashboard(){
+            let totalPatrimonio = 0 
+            let totalItensCriticos = 0 
 
-        function gerenciarEstoque(){
+            produtos.forEach(p => {
+                totalPatrimonio += (p.quantity*p.price) 
+                if(p.quantity<8){
+                    totalItensCriticos++
+                }
+            });
+            const cor = totalItensCriticos > 0 ? "red" : "green"
+            let StringHtml = `<li style="color:${cor}">Patrimônio Total: R$: ${totalPatrimonio} \n Itens em Crise: ${totalItensCriticos}</li>`; 
+
+            dashboard.innerHTML = StringHtml
+        }
+
+        function LimparFormulario(){
+            input_nome.value = ""
+            input_categoria.value=""
+            input_quantidade.value=""
+            input_preco.value = ""
+
+            input_nome.focus()
+
+        }
+
+
+        function GerenciarEstoque(){
          let relatorio = {}
          let htmlFinal = ""
         
@@ -101,16 +132,18 @@
          exibicao.innerHTML = htmlFinal
     }; 
 
-        function filtrandoCriticos(){
-
-        }
-
 
        btn_adicionar.addEventListener("click",()=>{
+          
               let nome = input_nome.value;  
               let categoria = input_categoria.value;
               let quantidade = Number(input_quantidade.value); 
               let preco = Number(input_preco.value); 
+
+           if(preco<=0 ||quantidade<=0){
+                alert("ERRO: O preco e a quantidade não podem ser menores que 0.")
+                return
+            }
 
            const produto ={
                 name:nome,
@@ -119,14 +152,10 @@
                 price:preco 
             }
 
-            produtos.push(produto);    
-            gerenciarEstoque(); 
-            
-            input_nome.value = ""
-            input_categoria.value=""
-            input_quantidade.value="" 
-            input_preco.value="" 
-
+            produtos.push(produto); 
+            GerarDashboard();    
+            GerenciarEstoque();
+            LimparFormulario(); 
         })
         
     </script>
