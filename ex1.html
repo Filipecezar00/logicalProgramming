@@ -69,6 +69,7 @@
             const input_quantidade = document.getElementById("input_quantidade"); 
             const input_preco = document.getElementById("input_preco"); 
             const btn_adicionar = document.getElementById("btn_adicionar"); 
+            const btn_filtrar = document.getElementById("btn_filtrar"); 
             const exibicao = document.getElementById("exibicao"); 
             const dashboard = document.getElementById("dashboard"); 
 
@@ -101,12 +102,11 @@
 
         }
 
-
-        function GerenciarEstoque(){
+        function GerenciarEstoque(lista=produtos){
          let relatorio = {}
          let htmlFinal = ""
         
-        produtos.forEach(p=>{
+        lista.forEach(p=>{
             if(!relatorio[p.category]){
                 relatorio[p.category] = {itens:[],totalGeral:0,valorFinanceiro:0}; 
             }
@@ -131,6 +131,26 @@
          } 
          exibicao.innerHTML = htmlFinal
     }; 
+
+     function FiltrarCriticos(){
+        let listaFiltrada = [] 
+        function LessQuantidade(quantidade,produto){
+            if(quantidade<5){
+                return produto; 
+            }
+        }
+            listaFiltrada = produtos.filter(LessQuantidade) 
+            
+            if(listaFiltrada.length==0){
+                exibicao.innerText=`Nenhum Item em estado critico, Excelente Trabalho!`
+            }else{
+                GerenciarEstoque(listaFiltrada);             
+            }
+        }
+
+        btn_filtrar.addEventListener("click",()=>{
+            FiltrarCriticos();   
+        })
 
 
        btn_adicionar.addEventListener("click",()=>{
