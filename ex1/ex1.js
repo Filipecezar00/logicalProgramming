@@ -1,4 +1,4 @@
- const input_nome = document.getElementById("input_nome"); 
+            const input_nome = document.getElementById("input_nome"); 
             const input_categoria = document.getElementById("input_categoria"); 
             const input_quantidade = document.getElementById("input_quantidade"); 
             const input_preco = document.getElementById("input_preco"); 
@@ -7,8 +7,9 @@
             const exibicao = document.getElementById("exibicao"); 
             const dashboard = document.getElementById("dashboard"); 
 
-            let produtos =[]
+            let produtos =[]; 
 
+      
             
         function GerarDashboard(){
             let totalPatrimonio = 0 
@@ -81,6 +82,23 @@
             }
         }
 
+        function SalvarDados(){
+            let dados= JSON.stringify(produtos);
+            localStorage.setItem("estoque_arma",dados); 
+    }
+
+        function CarregarDados(){
+          const memoria = localStorage.getItem("estoque_arma");
+            if(memoria){
+                let newArray = JSON.parse(memoria); 
+                produtos = newArray
+
+                GerarDashboard();
+                GerenciarEstoque(); 
+            }
+        }
+        window.onload = CarregarDados;
+
         btn_filtrar.addEventListener("click",()=>{
             FiltrarCriticos();   
         })
@@ -109,4 +127,5 @@
             GerarDashboard();    
             GerenciarEstoque();
             LimparFormulario(); 
+            SalvarDados(); 
         })
