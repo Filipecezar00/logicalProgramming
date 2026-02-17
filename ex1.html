@@ -81,12 +81,12 @@
 
             produtos.forEach(p => {
                 totalPatrimonio += (p.quantity*p.price) 
-                if(p.quantity<8){
+                if(p.quantity<5){
                     totalItensCriticos++
                 }
             });
             const cor = totalItensCriticos > 0 ? "red" : "green"
-            let StringHtml = `<li style="color:${cor}">Patrimônio Total: R$: ${totalPatrimonio} \n Itens em Crise: ${totalItensCriticos}</li>`; 
+            let StringHtml = `<p style="color:${cor}">Patrimônio Total: ${totalPatrimonio.toLocaleString('pt-br',{style:'currency',currency:'BRL'})} <br> Itens em Crise: ${totalItensCriticos}</p>`;  
 
             dashboard.innerHTML = StringHtml
         }
