@@ -55,16 +55,18 @@
                 Categoria: ${cat} <br> Total de Itens: ${relatorio[cat].totalGeral}
                 <p>
                 <ul>
-                    ${relatorio[cat].itens.map(item=>{
+                    ${relatorio[cat].itens.map(item,index=>{
                         const cor = item.quantity < 5 ? 'red' : 'green'; 
                         const status = item.quantity<5 ? "É necessario reposição" : "Tudo ok"
-                        return `<li style="color:${cor}">ITEM: ${item.name} <br> Quantidade Total do Item: ${item.quantity} <br> Preço do item: R$: ${item.price} <br> Status de Armazenagem: (${status})</li>`; 
+                        return `<li style="color:${cor}">ITEM: ${item.name} <br> Quantidade Total do Item: ${item.quantity} <br> Preço do item: R$: ${item.price} <br> Status de Armazenagem: (${status}) <button onclick="DarBaixa(${index})"> -1 </button> <br> <button onclick="RemoverItem(${index})"> Remover </button></li>`; 
                     }).join('')}    
                     </ul>
                 `
          } 
          exibicao.innerHTML = htmlFinal
     }; 
+
+   
 
      function FiltrarCriticos(){
         let listaFiltrada = [] 
