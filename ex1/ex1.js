@@ -55,7 +55,7 @@
                 Categoria: ${cat} <br> Total de Itens: ${relatorio[cat].totalGeral}
                 <p>
                 <ul>
-                    ${relatorio[cat].itens.map(item,index=>{
+                    ${relatorio[cat].itens.map((item,index)=>{
                         const cor = item.quantity < 5 ? 'red' : 'green'; 
                         const status = item.quantity<5 ? "É necessario reposição" : "Tudo ok"
                         return `<li style="color:${cor}">ITEM: ${item.name} <br> Quantidade Total do Item: ${item.quantity} <br> Preço do item: R$: ${item.price} <br> Status de Armazenagem: (${status}) <button onclick="DarBaixa(${index})"> -1 </button> <br> <button onclick="RemoverItem(${index})"> Remover </button></li>`; 
@@ -66,9 +66,31 @@
          exibicao.innerHTML = htmlFinal
     }; 
 
-   
+function DarBaixa(index){
+    let produtos_index = produtos[index] 
 
-     function FiltrarCriticos(){
+    if(produtos_index.quantity>0){
+     produtos_index.quantity --
+    }else if(produtos_index.quantity==0){
+        alert("Item esgotado") 
+        return
+    }
+   
+    SalvarDados(); 
+    GerenciarEstoque(); 
+    GerarDashboard(); 
+
+}
+
+function RemoverItem(index){
+produtos.splice(index,1); 
+SalvarDados(); 
+GerenciarEstoque(); 
+GerarDashboard(); 
+}
+
+
+function FiltrarCriticos(){
         let listaFiltrada = [] 
         function LessQuantidade(quantidade,produto){
             if(quantidade<5){
