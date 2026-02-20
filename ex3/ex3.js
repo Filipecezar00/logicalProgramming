@@ -13,9 +13,15 @@ window.onload = function(){
     lista_tarefas.innerHTML=""
 
     lista.forEach((tarefa)=>{
-    lista_tarefas.innerHTML+=`<li>${tarefa}</li> <button type="button">Excluir Tarefa</button>`
+    lista_tarefas.innerHTML+=`<br> <li>${tarefa}</li> <button type="button" onclick=(excluirTarefa) >Excluir Tarefa</button><br>`
     })
 }
+
+function excluirTarefa(){
+    
+}
+
+
 
 function adicionarTarefa(){
 
@@ -28,10 +34,11 @@ function adicionarTarefa(){
     lista.forEach((tarefa)=>{
     let arrayTarefas = JSON.stringify(lista);  
     localStorage.setItem("Tarefas",arrayTarefas); 
-    lista_tarefas.innerHTML+= `<li>${tarefa}</li>`
+    lista_tarefas.innerHTML+= `<br><li>${tarefa} <button type="button" onclick=(excluirTarefa(posicao))>Excluir Tarefa</button></li> <br>`
     })
 
 }
+
 
 function limparTudo(){
     lista=[];
