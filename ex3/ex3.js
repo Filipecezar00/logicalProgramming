@@ -17,9 +17,6 @@ window.onload = function(){
     })
 }
 
-function excluirTarefa(){
-    
-}
 
 
 
@@ -46,6 +43,14 @@ function limparTudo(){
     input_Tarefa.value=""
     lista_tarefas.innerHTML=""
 }
+
+function excluirTarefa(posicao){
+    let removendo = lista.splice(posicao,1); 
+    let salvando = localStorage.getItem("Tarefas"); 
+    adicionarTarefa()
+
+}
+
 btn_Adicionar.addEventListener("click",()=>{
     adicionarTarefa(); 
 })
