@@ -13,7 +13,7 @@ window.onload = function(){
     lista_tarefas.innerHTML=""
 
     lista.forEach((tarefa)=>{
-    lista_tarefas.innerHTML+=`<li>${tarefa}</li>`
+    lista_tarefas.innerHTML+=`<li>${tarefa}</li> <button type="button">Excluir Tarefa</button>`
     })
 }
 
