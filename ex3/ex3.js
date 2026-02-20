@@ -5,6 +5,8 @@ const lista_tarefas = document.getElementById("lista_tarefas");
 
 let lista = []
 
+
+
 window.onload = function(){
     let tarefas = localStorage.getItem("Tarefas"); 
     if(tarefas!==null){
@@ -13,11 +15,16 @@ window.onload = function(){
     lista_tarefas.innerHTML=""
 
     lista.forEach((tarefa)=>{
-    lista_tarefas.innerHTML+=`<br> <li>${tarefa}</li> <button type="button" onclick=(excluirTarefa) >Excluir Tarefa</button><br>`
+    lista_tarefas.innerHTML+=`<br> <li>${tarefa}</li> <button type="button" onclick="excluirTarefa(${posicao})">Excluir Tarefa</button><br>`
     })
 }
 
 
+
+function excluirTarefa(posicao){
+    let removendo = lista.splice(posicao,1); 
+    let salvando = localStorage.getItem("Tarefas"); 
+}
 
 
 function adicionarTarefa(){
@@ -31,7 +38,7 @@ function adicionarTarefa(){
     lista.forEach((tarefa)=>{
     let arrayTarefas = JSON.stringify(lista);  
     localStorage.setItem("Tarefas",arrayTarefas); 
-    lista_tarefas.innerHTML+= `<br><li>${tarefa} <button type="button" onclick=(excluirTarefa(posicao))>Excluir Tarefa</button></li> <br>`
+    lista_tarefas.innerHTML+= `<br><li>${tarefa} <button type="button" onclick="excluirTarefa(${posicao})">Excluir Tarefa</button></li> <br>`
     })
 
 }
@@ -44,12 +51,7 @@ function limparTudo(){
     lista_tarefas.innerHTML=""
 }
 
-function excluirTarefa(posicao){
-    let removendo = lista.splice(posicao,1); 
-    let salvando = localStorage.getItem("Tarefas"); 
-    adicionarTarefa()
 
-}
 
 btn_Adicionar.addEventListener("click",()=>{
     adicionarTarefa(); 
