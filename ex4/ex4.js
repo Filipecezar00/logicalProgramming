@@ -3,6 +3,7 @@ const filaDeDestinos=[];
 let estaMovimentando=false 
 let direcao="parado"
 
+
 function processarFila(){
   if(filaDeDestinos.length==0){
     estaMovimentando=false
@@ -33,3 +34,12 @@ function clicarNoBotao(andarSelecionado){
     processarFila();
   }
 }
+document.getElementById("btn_um").addEventListener('click',()=>clicarNoBotao(0));
+
+document.getElementById("btn_dois").addEventListener('click',()=>clicarNoBotao(1));
+
+document.getElementById("btn_tres").addEventListener('click',()=>clicarNoBotao(2));
+
+document.getElementById("btn_quatro").addEventListener('click',()=>clicarNoBotao(3));
+
+document.getElementById("btn_ cinco").addEventListener('click',()=>clicarNoBotao(4));
