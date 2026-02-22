@@ -29,6 +29,12 @@ function processarFila(){
   },1500)
 }
 
+function abrirPortas(){
+  portasAbertas=true 
+  atualizarInterface("portas abertas");
+}
+
+
 function proximoCiclo(){
   if(filaDeDestinos.length==0){
     estaMovimentando=falso
