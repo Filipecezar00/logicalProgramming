@@ -18,6 +18,12 @@ function processarFila(){
     direcao="descendo"
   }
   
+  setTimeout(function(){
+    andarAtual=proximoAndar
+    let removendo = filaDeDestinos.splicr
+    e(0);
+  },1000)
+  
 }
 
 function clicarNoBotao(andarSelecionado){
