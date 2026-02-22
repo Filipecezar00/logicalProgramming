@@ -12,5 +12,5 @@
   background:gold ;
   position: absolute;
   bottom:0;
-  transition: bottom 1s ease-in-out;
+  transition: transform 1s ease-in-out;
 }
