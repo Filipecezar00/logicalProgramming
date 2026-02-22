@@ -18,17 +18,20 @@ function processarFila(){
   }else if (proximoAndar<andarAtual){
     direcao="descendo"
   }
+  const cabine = document.getElementById("cabine");
+  
+  cabine.style.bottom=(proximoAndar*80)+"px";
+  
   
   setTimeout(function(){
     andarAtual=proximoAndar
-    let removendo = filaDeDestinos.shift();
+    filaDeDestinos.shift();
     processarFila(); 
-  },1000)
-  
+  },1500)
 }
 
 function clicarNoBotao(andarSelecionado){
-  if(!filaDeDestinos.includes(andarSelecionado)){
+  if(!filaDeDestinos.includes(andarSelecionado)&& andarSelecionado!==andarAtual){
     filaDeDestinos.push(andarSelecionado)
     filaDeDestinos.sort(direcao)
   }else if(estaMovimentando==false){
