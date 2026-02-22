@@ -51,6 +51,6 @@ document.getElementById("btn_quatro").addEventListener('click',()=>clicarNoBotao
 
 processarFila();
 
-document.getElementById("btn_ cinco").addEventListener('click',()=>clicarNoBotao(4));
+document.getElementById("btn_cinco").addEventListener('click',()=>clicarNoBotao(4));
 
 processarFila();
