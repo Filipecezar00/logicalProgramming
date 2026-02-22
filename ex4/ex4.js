@@ -20,7 +20,7 @@ function processarFila(){
   }
   const cabine = document.getElementById("cabine");
   
-  cabine.style.transform="translateY(- +(proximoAndar * 80)+"px)"
+  cabine.style.transform="translateY(-" +(proximoAndar * 80)+"px)";
   
   
   setTimeout(function(){
@@ -33,7 +33,7 @@ function processarFila(){
 function clicarNoBotao(andarSelecionado){
   if(!filaDeDestinos.includes(andarSelecionado)&& andarSelecionado!==andarAtual){
     filaDeDestinos.push(andarSelecionado)
-    filaDeDestinos.sort(direcao)
+    filaDeDestinos.sort("direcao")
   }else if(estaMovimentando==false){
     processarFila();
   }
