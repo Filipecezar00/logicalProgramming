@@ -1,7 +1,7 @@
 let andarAtual=0
 const filaDeDestinos=[];
 let estaMovimentando=false 
-let direcao="parado"||"subindo" || "descendo"
+let direcao="parado"
 
 function processarFila(){
   if(filaDeDestinos.length==0){
@@ -20,15 +20,14 @@ function processarFila(){
   
   setTimeout(function(){
     andarAtual=proximoAndar
-    let removendo = filaDeDestinos.splicr
-    e(0);
+    let removendo = filaDeDestinos.shift();
   },1000)
   
 }
 
 function clicarNoBotao(andarSelecionado){
   if(filaDeDestinos!=andarSelecionado){
-    filaDeDestinos=andarSelecionado
+    filaDeDestinos.push(andarSelecionado)
     filaDeDestinos.sort(direcao)
   }else if(estaMovimentando==false){
     processarFila();
