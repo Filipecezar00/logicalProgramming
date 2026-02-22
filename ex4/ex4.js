@@ -1,8 +1,7 @@
 let andarAtual=0
 const filaDeDestinos=[];
 let estaMovimentando=false 
-let direcao="parado"
-
+let portasAbertas=false
 
 function processarFila(){
   if(filaDeDestinos.length==0){
@@ -30,18 +29,53 @@ function processarFila(){
   },1500)
 }
 
-function clicarNoBotao(andarSelecionado){
-  if(!filaDeDestinos.includes(andarSelecionado)&& andarSelecionado!==andarAtual){
-    filaDeDestinos.push(andarSelecionado);
-    
-    if(direcao==="subindo"){
-      filaDeDestinos.sort((a,b)=>a-b);
-    }else if(direcao==="descendo"){
-      filaDeDestinos.sort((a,b)=>b-a);
-    }
-    
+function proximoCiclo(){
+  if(filaDeDestinos.length==0){
+    estaMovimentando=falso
+    return 
+  }
+  estaMovimentando=true 
+  let destino = filaDeDestinos[0]
+  
+  setTimeout((function){
+  portasAbertas=false
+  atualizarInterface("portas fechando")
+  },1000)
+  
+    do{
+      if(andarAtual<destino){
+        andarAtual=andarAtual++
+      }else{
+        andarAtual=andarAtual--
+      }
+  
+      setTimeout(function(){
+      atualizarVisor(andarAtual);
+      moverCabine(andarAtual);
+      },1500);
+      
+    }while(andarAtual!=destino)
+  
+  filaDeDestinos.shift();
+  abrirPortas();
+  
+  setTimeout(function(){
+   proximoCiclo() 
+  },2000)
+}
+
+
+
+
+
+function clicarNoBotao(andarDesejado){
+  if(andarDesejado==andarAtual){
+    abrirPortas();
+    return
+  }else if(!andarDesejado.includes(filaDeDestinos)){
+    ordenarFila();
   }else if(estaMovimentando==false){
-    processarFila();
+    proximoCiclo();
   }
 }
 document.getElementById("btn_um").addEventListener('click',()=>clicarNoBotao(0));
