@@ -32,8 +32,14 @@ function processarFila(){
 
 function clicarNoBotao(andarSelecionado){
   if(!filaDeDestinos.includes(andarSelecionado)&& andarSelecionado!==andarAtual){
-    filaDeDestinos.push(andarSelecionado)
-    filaDeDestinos.sort("direcao")
+    filaDeDestinos.push(andarSelecionado);
+    
+    if(direcao==="subindo"){
+      filaDeDestinos.sort((a,b)=>a-b);
+    }else if(direcao==="descendo"){
+      filaDeDestinos.sort((a,b)=>b-a);
+    }
+    
   }else if(estaMovimentando==false){
     processarFila();
   }
