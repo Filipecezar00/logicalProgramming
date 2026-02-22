@@ -20,7 +20,7 @@ function processarFila(){
   }
   const cabine = document.getElementById("cabine");
   
-  cabine.style.bottom=(proximoAndar*80)+"px";
+  cabine.style.transform="translateY(- +(proximoAndar * 80)+"px)"
   
   
   setTimeout(function(){
