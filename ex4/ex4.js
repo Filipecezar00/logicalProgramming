@@ -19,9 +19,9 @@ function proximoCiclo(){
   
   if(andarAtual!=destino){
     if(andarAtual<destino){
-      andarAtual=andarAtual++
+      andarAtual++
     }else if(andarAtual>destino){
-      andarAtual=andarAtual--
+      andarAtual--
     }
     atualizarVisor(andarAtual);
     moverCabine(andarAtual);
