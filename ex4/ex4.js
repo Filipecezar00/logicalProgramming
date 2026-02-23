@@ -22,7 +22,7 @@ function proximoCiclo(){
       andarAtual++
     }else if(andarAtual>destino){
       andarAtual--
-    }else{
+    }
     atualizarVisor(andarAtual);
     moverCabine(andarAtual);
     
@@ -31,16 +31,16 @@ function proximoCiclo(){
     }1500);
   }
   
-  abrirPortas();
+ else{ abrirPortas();
   filaDeDestinos.shift();
-}
+
   
   setTimeout(function(){
    proximoCiclo();
   },2000);
   
 }
-
+}
 function ordenarFila(){
   if(filaDeDestinos.length<2){
     return
