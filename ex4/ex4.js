@@ -37,7 +37,7 @@ function abrirPortas(){
 
 function proximoCiclo(){
   if(filaDeDestinos.length==0){
-    estaMovimentando=falso
+    estaMovimentando=false
     return 
   }
   estaMovimentando=true 
