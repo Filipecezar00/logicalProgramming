@@ -31,15 +31,16 @@ function proximoCiclo(){
     }1500);
   }
   
- else{ abrirPortas();
+ else{ 
+  abrirPortas();
   filaDeDestinos.shift();
 
   
   setTimeout(function(){
    proximoCiclo();
   },2000);
+  }
   
-}
 }
 function ordenarFila(){
   if(filaDeDestinos.length<2){
@@ -58,7 +59,7 @@ function clicarNoBotao(andarDesejado){
     abrirPortas();
     return
   }else if(!filaDeDestinos.includes(andarDesejado)){
-    filaDeDestinos.sort(andarDesejado)
+    filaDeDestinos.push(andarDesejado);
     ordenarFila();
   }else if(estaMovimentando==false){
     proximoCiclo();
