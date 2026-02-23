@@ -78,7 +78,7 @@ function clicarNoBotao(andarDesejado){
   if(andarDesejado==andarAtual){
     abrirPortas();
     return
-  }else if(!andarDesejado.includes(filaDeDestinos)){
+  }else if(!filaDeDestinos.includes(andarDesejado)){
     ordenarFila();
   }else if(estaMovimentando==false){
     proximoCiclo();
