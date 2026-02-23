@@ -3,32 +3,6 @@ const filaDeDestinos=[];
 let estaMovimentando=false 
 let portasAbertas=false
 
-function processarFila(){
-  if(filaDeDestinos.length==0){
-    estaMovimentando=false
-    direcao="parado"
-    return
-  }
-  estaMovimentando=true
-  let proximoAndar=filaDeDestinos[0];
-  
-  if(proximoAndar>andarAtual){
-    direcao="subindo"
-  }else if (proximoAndar<andarAtual){
-    direcao="descendo"
-  }
-  const cabine = document.getElementById("cabine");
-  
-  cabine.style.transform="translateY(-" +(proximoAndar * 80)+"px)";
-  
-  
-  setTimeout(function(){
-    andarAtual=proximoAndar
-    filaDeDestinos.shift();
-    processarFila(); 
-  },1500)
-}
-
 function abrirPortas(){
   portasAbertas=true 
   atualizarInterface("portas abertas");
