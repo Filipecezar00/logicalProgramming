@@ -43,31 +43,28 @@ function proximoCiclo(){
   estaMovimentando=true 
   let destino = filaDeDestinos[0]
   
-  setTimeout((function){
-  portasAbertas=false
-  atualizarInterface("portas fechando")
-  },1000)
+  if(andarAtual!=destino){
+    if(andarAtual<destino){
+      andarAtual=andarAtual++
+    }else if(andarAtual>destino){
+      andarAtual=andarAtual--
+    }
+    atualizarVisor(andarAtual);
+    moverCabine(andarAtual);
+    
+    setTimeout(function(){
+      proximoCiclo();
+    }1500);
+  }
   
-    do{
-      if(andarAtual<destino){
-        andarAtual=andarAtual++
-      }else{
-        andarAtual=andarAtual--
-      }
-  
-      setTimeout(function(){
-      atualizarVisor(andarAtual);
-      moverCabine(andarAtual);
-      },1500);
-      
-    }while(andarAtual!=destino)
-  
-  filaDeDestinos.shift();
   abrirPortas();
+  filaDeDestinos.shift();
+  
   
   setTimeout(function(){
-   proximoCiclo() 
-  },2000)
+   proximoCiclo();
+  },2000);
+  
 }
 
 
@@ -79,6 +76,7 @@ function clicarNoBotao(andarDesejado){
     abrirPortas();
     return
   }else if(!filaDeDestinos.includes(andarDesejado)){
+    filaDeDestinos.sort(andarDesejado)
     ordenarFila();
   }else if(estaMovimentando==false){
     proximoCiclo();
