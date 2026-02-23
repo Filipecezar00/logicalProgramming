@@ -67,9 +67,17 @@ function proximoCiclo(){
   
 }
 
-
-
-
+function ordenarFila(){
+  if(filaDeDestinos.length<2){
+    return
+  }
+  let primeiroDestino= filaDeDestinos[0];
+  if(primeiroDestino>andarAtual){
+    filaDeDestinos.sort((a,b)=>a-b);
+  }else if(primeiroDestino<andarAtual){
+    filaDeDestinos.sort((a,b)=>b-a);
+  }
+}
 
 function clicarNoBotao(andarDesejado){
   if(andarDesejado==andarAtual){
