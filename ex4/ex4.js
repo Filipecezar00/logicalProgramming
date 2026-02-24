@@ -11,6 +11,10 @@ function abrirPortas(){
 
 
 function proximoCiclo(){
+  if(emergenciaAtiva==true){
+   return 
+  }
+  
   if(filaDeDestinos.length==0){
     estaMovimentando=false
     return 
