@@ -33,7 +33,7 @@ function proximoCiclo(){
     
     setTimeout(function(){
       proximoCiclo();
-    }1500);
+    },1500);
   }
   
  else{ 
@@ -72,6 +72,19 @@ function paradaDeEmergencia(){
   desativarBotoes();
 }
 
+function resetarSistema(){
+  if(emergenciaAtiva==true){
+    emergenciaAtiva=false
+    
+    atualizarVisor(andarAtual);
+    pintarCabine("Original");
+    
+    ativarBotoes();
+    
+    atualizarInterface("Sistema reiniciado");
+  }
+}
+
 
 function clicarNoBotao(andarDesejado){
   if(andarDesejado==andarAtual){
@@ -80,9 +93,12 @@ function clicarNoBotao(andarDesejado){
   }else if(!filaDeDestinos.includes(andarDesejado)){
     filaDeDestinos.push(andarDesejado);
     ordenarFila();
-  }else if(estaMovimentando==false){
+  } 
+  
+  if(estaMovimentando==false){
     proximoCiclo();
   }
+  
 }
 document.getElementById("btn_um").addEventListener('click',()=>clicarNoBotao(0));
  
@@ -97,3 +113,5 @@ document.getElementById("btn_quatro").addEventListener('click',()=>clicarNoBotao
 
 
 document.getElementById("btn_cinco").addEventListener('click',()=>clicarNoBotao(4));
+
+document.getElementById("btn_emergencia").addEventListener("click",()=>clicarNoBotao())
