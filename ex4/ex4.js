@@ -81,7 +81,7 @@ function resetarSistema(){
     
     ativarBotoes();
     
-    atualizarInterface("Sistema reiniciado");
+    alert("Sistema reiniciado");
   }
 }
 
