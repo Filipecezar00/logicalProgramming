@@ -2,6 +2,7 @@ let andarAtual=0
 const filaDeDestinos=[];
 let estaMovimentando=false 
 let portasAbertas=false
+let emergenciaAtiva=false
 
 function abrirPortas(){
   portasAbertas=true 
@@ -53,6 +54,20 @@ function ordenarFila(){
     filaDeDestinos.sort((a,b)=>b-a);
   }
 }
+
+function paradaDeEmergencia(){
+  emergenciaAtiva=true 
+  estaMovimentando=false
+  filaDeDestinos=[]
+  
+  atualizarVisor("EMERGÊNGIA");
+  pintarCabine("Vermelho");
+  
+  abrirPortas();
+  
+  desativarBotoes();
+}
+
 
 function clicarNoBotao(andarDesejado){
   if(andarDesejado==andarAtual){
