@@ -3,6 +3,15 @@ const filaDeDestinos=[];
 let estaMovimentando=false 
 let portasAbertas=false
 let emergenciaAtiva=false
+const btn_um=document.getElementById("btn_um");
+const btn_dois=document.getElementById("btn_dois");
+const btn_tres=document.getElementById("btn_tres");
+const btn_quatro=document.getElementById("btn_quatro");
+const btn_cinco=document.getElementById("btn_cinco");
+const btn_emergencia=document.getElementById("btn_emergencia");
+const btn_resetar=document.getElementById("btn_resetar");
+
+
 
 function abrirPortas(){
   portasAbertas=true 
@@ -105,21 +114,25 @@ function clicarNoBotao(andarDesejado){
   }
   
 }
-document.getElementById("btn_um").addEventListener('click',()=>clicarNoBotao(0));
- 
- 
-document.getElementById("btn_dois").addEventListener('click',()=>clicarNoBotao(1));
+btn_um.addEventListener("click",()=>{
+  clicarNoBotao(0);
+})
+btn_dois.addEventListener("click",()=>{
+  clicarNoBotao(1);
+})
+btn_tres.addEventListener("click",()=>{
+  clicarNoBotao(2);
+})
+btn_quatro.addEventListener("click",()=>{
+  clicarNoBotao(3);
+})
+btn_cinco.addEventListener("click",()=>{
+  clicarNoBotao(4);
+})
+btn_resetar.addEventListener("click",()=>{
+  resetarSistema();
+})
 
-
-document.getElementById("btn_tres").addEventListener('click',()=>clicarNoBotao(2));
-
-
-document.getElementById("btn_quatro").addEventListener('click',()=>clicarNoBotao(3));
-
-
-document.getElementById("btn_cinco").addEventListener('click',()=>clicarNoBotao(4));
-
-
-document.getElementById("btn_emergencia").addEventListener("click",()=>paradaDeEmergencia());
-
-document.getElementById("btn_resetar").addEventListener("click",()=>resetarSistema());
+btn_emergencia.addEventListener("click",()=>{
+  paradaDeEmergencia();
+})
