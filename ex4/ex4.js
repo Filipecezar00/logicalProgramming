@@ -87,6 +87,11 @@ function resetarSistema(){
 
 
 function clicarNoBotao(andarDesejado){
+  if(emergenciaAtiva==true){
+    alert("Sistema Bloqueado");
+    return 
+  }
+  
   if(andarDesejado==andarAtual){
     abrirPortas();
     return
@@ -114,4 +119,7 @@ document.getElementById("btn_quatro").addEventListener('click',()=>clicarNoBotao
 
 document.getElementById("btn_cinco").addEventListener('click',()=>clicarNoBotao(4));
 
-document.getElementById("btn_emergencia").addEventListener("click",()=>clicarNoBotao())
+
+document.getElementById("btn_emergencia").addEventListener("click",()=>paradaDeEmergencia());
+
+document.getElementById("btn_resetar").addEventListener("click",()=>resetarSistema());
