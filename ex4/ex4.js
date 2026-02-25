@@ -4,7 +4,8 @@ let estaMovimentando=false
 let portasAbertas=false
 let emergenciaAtiva=false
 
-const btn_um=document.getElementById("btn_um");
+window.onload=function(){
+  const btn_um=document.getElementById("btn_um");
 const btn_dois=document.getElementById("btn_dois");
 const btn_tres=document.getElementById("btn_tres");
 const btn_quatro=document.getElementById("btn_quatro");
@@ -12,16 +13,38 @@ const btn_cinco=document.getElementById("btn_cinco");
 const btn_emergencia=document.getElementById("btn_emergencia");
 const btn_resetar=document.getElementById("btn_resetar");
 
-const ids=["btn_um","btn_dois","btn_tres","btn_quatro","btn_cinco","btn_emergencia","btn_resetar"];
 
-ids.forEach(id=>{
-  const el = document.getElementById(id);
-  if(!el){
-    console.error(`O botão ${id} não existe no html`)
-  }else{
-    console.log(`OK, botão ${id} encontrado`)
-  }
+if(btn_um && btn_dois && btn_resetar && btn_emergencia){
+  btn_um.addEventListener("click",()=>{
+  clicarNoBotao(0);
 })
+btn_dois.addEventListener("click",()=>{
+  clicarNoBotao(1);
+})
+btn_tres.addEventListener("click",()=>{
+  clicarNoBotao(2);
+})
+btn_quatro.addEventListener("click",()=>{
+  clicarNoBotao(3);
+})
+btn_cinco.addEventListener("click",()=>{
+  clicarNoBotao(4);
+})
+btn_resetar.addEventListener("click",()=>{
+  resetarSistema();
+})
+
+btn_emergencia.addEventListener("click",()=>{
+  paradaDeEmergencia();
+})
+}else{
+  console.error("ERRO: Um ou mais botões não foram encontrados")
+}
+
+
+}
+
+
 
 function abrirPortas(){
   portasAbertas=true 
@@ -122,33 +145,5 @@ function clicarNoBotao(andarDesejado){
   if(estaMovimentando==false){
     proximoCiclo();
   }
-  
-}
-
-if(btn_um && btn_dois && btn_resetar && btn_emergencia){
-  btn_um.addEventListener("click",()=>{
-  clicarNoBotao(0);
-})
-btn_dois.addEventListener("click",()=>{
-  clicarNoBotao(1);
-})
-btn_tres.addEventListener("click",()=>{
-  clicarNoBotao(2);
-})
-btn_quatro.addEventListener("click",()=>{
-  clicarNoBotao(3);
-})
-btn_cinco.addEventListener("click",()=>{
-  clicarNoBotao(4);
-})
-btn_resetar.addEventListener("click",()=>{
-  resetarSistema();
-})
-
-btn_emergencia.addEventListener("click",()=>{
-  paradaDeEmergencia();
-})
-}else{
-  console.error("ERRO: Um ou mais botões não foram encontrados")
 }
 
