@@ -5,13 +5,19 @@ let portasAbertas=false
 let emergenciaAtiva=false
 
 window.onload=function(){
-  const btn_um=document.getElementById("btn_um");
-const btn_dois=document.getElementById("btn_dois");
-const btn_tres=document.getElementById("btn_tres");
-const btn_quatro=document.getElementById("btn_quatro");
-const btn_cinco=document.getElementById("btn_cinco");
-const btn_emergencia=document.getElementById("btn_emergencia");
-const btn_resetar=document.getElementById("btn_resetar");
+  const todosOsBotoes=document.querySelectorAll("button"); 
+  console.log("Total de botões no html:",todosOsBotoes.length);
+  
+  const testeEmergencia= document.getElementById("btn_emergencia");
+  
+  if(testeEmergencia){
+    alert("Sucesso! há um botão de emergência");
+  }else{
+    console.error("O js continua cego");
+    todosOsBotoes.forEach((btn,index)=>{
+      console.log(`Botão ${index} tem o ID: "${btn.id}"`);
+    });
+  }
 
 
 if(btn_um && btn_dois && btn_resetar && btn_emergencia){
@@ -40,11 +46,16 @@ btn_emergencia.addEventListener("click",()=>{
 }else{
   console.error("ERRO: Um ou mais botões não foram encontrados")
 }
-
-
 }
 
-
+function pararAgora(andarAlvo){
+  let distancia = (andarAlvo-andarAtual)
+  if(distancia<0.5 && velocidade>2){
+    return false 
+  }else{
+    return true 
+  }
+}
 
 function abrirPortas(){
   portasAbertas=true 
@@ -126,7 +137,6 @@ function resetarSistema(){
     alert("Sistema reiniciado");
   }
 }
-
 
 function clicarNoBotao(andarDesejado){
   if(emergenciaAtiva==true){
