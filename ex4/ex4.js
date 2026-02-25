@@ -114,7 +114,9 @@ function clicarNoBotao(andarDesejado){
   }
   
 }
-btn_um.addEventListener("click",()=>{
+
+if(btn_um && btn_dois && btn_resetar && btn_emergencia){
+  btn_um.addEventListener("click",()=>{
   clicarNoBotao(0);
 })
 btn_dois.addEventListener("click",()=>{
@@ -136,3 +138,7 @@ btn_resetar.addEventListener("click",()=>{
 btn_emergencia.addEventListener("click",()=>{
   paradaDeEmergencia();
 })
+}else{
+  console.error("ERRO: Um ou mais botões não foram encontrados")
+}
+
