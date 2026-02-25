@@ -1,8 +1,9 @@
-let andarAtual=0
+let andarAtual=00
 const filaDeDestinos=[];
 let estaMovimentando=false 
 let portasAbertas=false
 let emergenciaAtiva=false
+
 const btn_um=document.getElementById("btn_um");
 const btn_dois=document.getElementById("btn_dois");
 const btn_tres=document.getElementById("btn_tres");
@@ -11,7 +12,16 @@ const btn_cinco=document.getElementById("btn_cinco");
 const btn_emergencia=document.getElementById("btn_emergencia");
 const btn_resetar=document.getElementById("btn_resetar");
 
+const ids=["btn_um","btn_dois","btn_tres","btn_quatro","btn_cinco","btn_emergencia","btn_resetar"];
 
+ids.forEach(id=>{
+  const el = document.getElementById(id);
+  if(!el){
+    console.error(`O botão ${id} não existe no html`)
+  }else{
+    console.log(`OK, botão ${id} encontrado`)
+  }
+})
 
 function abrirPortas(){
   portasAbertas=true 
