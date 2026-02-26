@@ -6,37 +6,20 @@ let emergenciaAtiva=false
 let controleTempoPorta
 
 window.onload=function(){
-  const todosOsBotoes=document.querySelectorAll("button"); 
-  console.log("Total de botões no html:",todosOsBotoes.length);
+  const botoesAndar=[btn_um, btn_dois, btn_tres,btn_quatro,btn_cinco];
   
-  const testeEmergencia= document.getElementById("btn_emergencia");
+  botoesAndar.forEach((btn,index)=>{
+    btn.addEventListener("click",()=>clicarNoBotao(index));
+  });
   
-  if(testeEmergencia){
-    alert("Sucesso! há um botão de emergência");
-  }else{
-    console.error("O js continua cego");
-    todosOsBotoes.forEach((btn,index)=>{
-      console.log(`Botão ${index} tem o ID: "${btn.id}"`);
-    });
-  }
-
+  const btn_resetar=document.getElementById("btn_resetar");
+  const btn_emergencia= document.getElementById("btn_emergencia");
+  
 
 if(btn_um && btn_dois && btn_resetar && btn_emergencia){
-  btn_um.addEventListener("click",()=>{
-  clicarNoBotao(0);
-})
-btn_dois.addEventListener("click",()=>{
-  clicarNoBotao(1);
-})
-btn_tres.addEventListener("click",()=>{
-  clicarNoBotao(2);
-})
-btn_quatro.addEventListener("click",()=>{
-  clicarNoBotao(3);
-})
-btn_cinco.addEventListener("click",()=>{
-  clicarNoBotao(4);
-})
+
+
+
 btn_resetar.addEventListener("click",()=>{
   resetarSistema();
 })
@@ -47,6 +30,28 @@ btn_emergencia.addEventListener("click",()=>{
 }else{
   console.error("ERRO: Um ou mais botões não foram encontrados")
 }
+}
+
+function atualizarVisor(andar){
+  console.log(`No visor: ${andar}`);
+}
+function moverCabine(andar){console.log("Cabine indo para: " + andar);
+}
+function pintarCabine(cor){console.log("Cor da cabine: " + cor);
+}
+function desativarBotoes(){console.log("Botões Desativados");
+}
+function ativarBotoes(){
+  console.log("Botões Reativados");
+}
+
+function fecharPortaERecomecar(){
+  portasAbertas=false
+  proximoCiclo();
+}
+
+function atualizarInterface(e){
+  console.log(`Status ${e}`);
 }
 
 function pararAgora(andarAlvo){
@@ -63,7 +68,7 @@ function abrirPortas(){
   atualizarInterface("portas abertas");
   
   if(controleTempoPorta){
-    cancelar_aguardar(controleTempoPorta);
+    clearTimeout(controleTempoPorta);
   }
   controleTempoPorta=setTimeout(function(){
     fecharPortaERecomecar();
@@ -100,13 +105,7 @@ function proximoCiclo(){
  else{ 
   abrirPortas();
   filaDeDestinos.shift();
-
-  
-  setTimeout(function(){
-   proximoCiclo();
-  },2000);
   }
-  
 }
 function ordenarFila(){
   if(filaDeDestinos.length<2){
