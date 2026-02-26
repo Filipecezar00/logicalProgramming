@@ -3,6 +3,7 @@ const filaDeDestinos=[];
 let estaMovimentando=false 
 let portasAbertas=false
 let emergenciaAtiva=false
+let controleTempoPorta
 
 window.onload=function(){
   const todosOsBotoes=document.querySelectorAll("button"); 
@@ -60,6 +61,13 @@ function pararAgora(andarAlvo){
 function abrirPortas(){
   portasAbertas=true 
   atualizarInterface("portas abertas");
+  
+  if(controleTempoPorta){
+    cancelar_aguardar(controleTempoPorta);
+  }
+  controleTempoPorta=setTimeout(function(){
+    fecharPortaERecomecar();
+  },3000)
 }
 
 
