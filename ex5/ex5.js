@@ -35,13 +35,15 @@ function processarCompra(cestaDoCliente){
 }
 
 function atenderProximoCliente(){
+  let visorStatus=document.getElementById("status-caixa");
+  
   if(filaDeClientes.length===0){
     alert("Nenhum cliente na fila");
   }else{
   let cliente=filaDeClientes.shift();
   let valorPago=processarCompra(cliente.cesta);
   faturamentoTotal=faturamentoTotal+valorPago
-    alert(`Cliente ${cliente.nome} pagou R$: ${valorPago.toFixed(2)}`);
+    visorStatus.innerText=`Cliente ${cliente.nome} pagou R$: ${valorPago.toFixed(2)}`;
   }
 }
 
