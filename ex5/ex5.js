@@ -22,7 +22,7 @@ window.onload = function(){
   const btn_fechar=document.getElementById("btn-fechar");
   
   btn_atender.addEventListener("click",atenderProximoCliente);
-  btn_fechar.addEventListener("click",btn_fechar)
+  btn_fechar.addEventListener("click",fecharCaixa);
 }
 
 function processarCompra(cestaDoCliente){
