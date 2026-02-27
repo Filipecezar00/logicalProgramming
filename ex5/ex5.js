@@ -33,7 +33,7 @@ function atenderProximoCliente(){
     alert("Nenhum cliente na fila");
   }else{
   let cliente=filaDeClientes.shift();
-  let valorPago=processarCompra(cliente);
-    alert(`Cliente ${cliente} pagou R$: ${total}`);
+  let valorPago=processarCompra(cliente.cesta);
+    alert(`Cliente ${cliente.nome} pagou R$: ${valorPago.toFixed(2)}`);
   }
 }
