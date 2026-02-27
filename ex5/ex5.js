@@ -1,4 +1,3 @@
-
 let filaDeClientes=[
   {
     nome:"João",
@@ -15,11 +14,18 @@ let filaDeClientes=[
     ]
   }
  ]
+let estoque = {"Leite":10,"Pão":50,"Café":20};
+let faturamentoTotal=0
 
 function processarCompra(cestaDoCliente){
   let total = 0
   cestaDoCliente.forEach((item)=>{
-    total=total + item.preco
+    if(estoque[item.nome]>0){
+      estoque[item.nome]--
+      total=total + item.preco
+    }else{
+     alert(`O produto ${item.nome} acabou no estoque`);
+    }
   })
   if(total>100){
     total = total * 0.90
@@ -34,6 +40,11 @@ function atenderProximoCliente(){
   }else{
   let cliente=filaDeClientes.shift();
   let valorPago=processarCompra(cliente.cesta);
+  faturamentoTotal=faturamentoTotal+valorPago
     alert(`Cliente ${cliente.nome} pagou R$: ${valorPago.toFixed(2)}`);
   }
+}
+
+function fecharCaixa(){
+  alert(`O total vendido hoje foi de ${faturamentoTotal}`)
 }
