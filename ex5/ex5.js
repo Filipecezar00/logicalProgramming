@@ -17,6 +17,14 @@ let filaDeClientes=[
 let estoque = {"Leite":10,"Pão":50,"Café":20};
 let faturamentoTotal=0
 
+window.onload = function(){
+  const btn_atender=document.getElementById("btn-atender");
+  const btn_fechar=document.getElementById("btn-fechar");
+  
+  btn_atender.addEventListener("click",atenderProximoCliente);
+  btn_fechar.addEventListener("click",btn_fechar)
+}
+
 function processarCompra(cestaDoCliente){
   let total = 0
   cestaDoCliente.forEach((item)=>{
