@@ -4,6 +4,7 @@ const resp = document.getElementById("resp");
 const input_valor = document.getElementById("valor");
 const input_despesa = document.getElementById("despesas");
 const btn_adicionar = document.getElementById("btn_adicionar");
+let lucroAcumulado = 0;
 
 function CalcularMetas() {
   let htmlFinal = "";

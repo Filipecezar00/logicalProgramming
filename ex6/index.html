@@ -7,13 +7,25 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <h1 id="title">DASHBOARD DE FINANÇAS</h1>
     <div id="container">
-      <form id="form">
+      <form id="form1">
         <label for="despesas">Despesa</label>
         <input type="text" id="despesas" placeholder="Registrar Despesa" />
         <label for="valor">Valor</label>
         <input type="number" id="valor" placeholder="Registrar valor" />
         <button type="button" id="btn_adicionar">Adicionar Despesas</button>
+      </form>
+      <form id="form2">
+        <label for="produto">Produto:</label>
+        <input type="text" id="produto" placeholder="Registrar Produto" />
+        <label for="quantidade">Quantidade:</label>
+        <input
+          type="number"
+          id="quantidade"
+          placeholder="Registrar Quantidade"
+        />
+        <button type="button" id="btn_registrar">Registrar Venda</button>
       </form>
     </div>
     <div id="resp"></div>
