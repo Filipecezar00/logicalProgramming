@@ -10,20 +10,24 @@ function CalcularMetas() {
   let totalDespesas = despesas.reduce((acc, item) => acc + item.valor, 0);
   produtos.forEach((produto) => {
     let lucro = Number(produto.precoVenda - produto.precoCusto);
+    if (lucro <= 0) {
+      alert("Esse Produto não gerou lucro");
+      return;
+    }
     let unidadesNecessarias = totalDespesas / lucro;
 
     console.log(unidadesNecessarias);
     console.log(produto);
 
     htmlFinal += `<p>Para pagar as contas apenas com ${produto.nome} <br> venda ${Math.ceil(unidadesNecessarias)} un.</p>`;
-    resp.innerHTML = htmlFinal;
-    return;
   });
+  resp.innerHTML = htmlFinal;
+  return;
 }
 
 function AdicionarDespesa() {
   let valor = Number(input_valor.value);
-  let despesa = Number(input_despesa.value);
+  let despesa = input_despesa.value;
 
   const despesa_obj = {
     nome: despesa,
@@ -31,7 +35,6 @@ function AdicionarDespesa() {
   };
 
   despesas.push(despesa_obj);
-  produtos.push();
   localStorage.setItem("despesa", despesa);
   CalcularMetas();
 }
