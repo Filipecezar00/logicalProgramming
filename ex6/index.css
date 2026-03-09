@@ -16,7 +16,16 @@
 #btn_adicionar {
   margin: 10px;
 }
-label,
 input {
   margin: 5px;
+}
+label {
+  margin: 5px;
+  color: #ffffff;
+}
+body {
+  background-color: rgb(78, 77, 77);
+}
+p {
+  text-align: center;
 }
