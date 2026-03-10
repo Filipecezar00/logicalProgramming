@@ -44,3 +44,6 @@ body {
 p {
   text-align: center;
 }
+button {
+  cursor: pointer;
+}
