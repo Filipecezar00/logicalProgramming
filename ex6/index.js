@@ -10,7 +10,7 @@ const btn_adicionar = document.getElementById("btn_adicionar");
 const btn_registrar = document.getElementById("btn_registrar");
 const produto = document.getElementById("produto");
 const quantidade = document.getElementById("quantidade");
-let lucroAcumulado = 0;
+let lucroAcumulado = Number(localStorage.getItem("lucroAcumulado")) || 0;
 
 function CalcularMetas() {
   let htmlFinal = "";
@@ -20,21 +20,24 @@ function CalcularMetas() {
 
     let unidadesNecessarias = totalDespesas / lucro;
     let saldoDevedor = totalDespesas - lucroAcumulado;
-
-    if (saldoDevedor > 0) {
-      alert("Você ainda deve dinheiro, trabalhe mais");
-    } else if (saldoDevedor < 0) {
-      alert("Parabens você quitou a divida");
-    }
+    let cor = saldoDevedor > 0 ? "#b90000" : "#2ec500";
+    let status =
+      saldoDevedor > 0
+        ? "Dívida Ativa, Trabalhe mais"
+        : "Divida paga, parabens!";
 
     htmlFinal += `<p>Para pagar as contas apenas com ${produto.name} <br> 
     venda ${Math.ceil(unidadesNecessarias)} un.
-     <br> Saldo Devedor Atual: ${saldoDevedor}</p>`;
+     <br> Saldo Devedor Atual: ${saldoDevedor}</p> <br>
+     <p style="color:${cor}">Saldo: R$ ${saldoDevedor.toFixed(2)}</p>
+     `;
+
+    if (lucro <= 0) {
+      alert("Esse Produto não gerou lucro");
+      return;
+    }
   });
-  if (lucro <= 0) {
-    alert("Esse Produto não gerou lucro");
-    return;
-  }
+
   resp_despesa.innerHTML = htmlFinal;
   return;
 }
