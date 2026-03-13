@@ -29,6 +29,7 @@ function CalcularMetas() {
     htmlFinal += `<p>Para pagar as contas apenas com ${produto.name} <br> 
     venda ${Math.ceil(unidadesNecessarias)} un.
      <br> Saldo Devedor Atual: ${saldoDevedor}</p> <br>
+     <p>Status Financeiro: ${status}<p> 
      <p style="color:${cor}">Saldo: R$ ${saldoDevedor.toFixed(2)}</p>
      `;
 
