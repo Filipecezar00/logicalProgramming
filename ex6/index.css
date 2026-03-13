@@ -43,7 +43,15 @@ body {
 }
 p {
   text-align: center;
+  color: #ffffff;
 }
 button {
   cursor: pointer;
+}
+#resps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
 }

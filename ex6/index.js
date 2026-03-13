@@ -1,6 +1,7 @@
 const despesas = [];
-const produtos = [{ nome: "Caneca", precoCusto: 200, precoVenda: 350 }];
-const resp = document.getElementById("resp");
+const produtos = [];
+const resp_despesa = document.getElementById("resp_despesa");
+const resp_produto = document.getElementById("resp_produto");
 const input_valor = document.getElementById("valor");
 const input_despesa = document.getElementById("despesas");
 const precoCusto = document.getElementById("preco_custo");
@@ -15,19 +16,26 @@ function CalcularMetas() {
   let htmlFinal = "";
   let totalDespesas = despesas.reduce((acc, item) => acc + item.valor, 0);
   produtos.forEach((produto) => {
-    let lucro = Number(produto.precoVenda - produto.precoCusto);
-    if (lucro <= 0) {
-      alert("Esse Produto não gerou lucro");
-      return;
-    }
+    let lucro = Number(produto.sell - produto.cost);
+
     let unidadesNecessarias = totalDespesas / lucro;
+    let saldoDevedor = totalDespesas - lucroAcumulado;
 
-    console.log(unidadesNecessarias);
-    console.log(produto);
+    if (saldoDevedor > 0) {
+      alert("Você ainda deve dinheiro, trabalhe mais");
+    } else if (saldoDevedor < 0) {
+      alert("Parabens você quitou a divida");
+    }
 
-    htmlFinal += `<p>Para pagar as contas apenas com ${produto.nome} <br> venda ${Math.ceil(unidadesNecessarias)} un.</p>`;
+    htmlFinal += `<p>Para pagar as contas apenas com ${produto.name} <br> 
+    venda ${Math.ceil(unidadesNecessarias)} un.
+     <br> Saldo Devedor Atual: ${saldoDevedor}</p>`;
   });
-  resp.innerHTML = htmlFinal;
+  if (lucro <= 0) {
+    alert("Esse Produto não gerou lucro");
+    return;
+  }
+  resp_despesa.innerHTML = htmlFinal;
   return;
 }
 
@@ -46,28 +54,50 @@ function AdicionarDespesa() {
 }
 
 function RegistrarVenda() {
+  let htmlFinal = "";
   let produto_value = produto.value;
   let custo_value = Number(precoCusto.value);
   let venda_value = Number(precoVenda.value);
   let quantidade_value = Number(quantidade.value);
 
+  const produto_obj = {
+    name: produto_value,
+    quantity: quantidade_value,
+    cost: custo_value,
+    sell: venda_value,
+  };
+
+  produtos.push(produto_obj);
+
   if (venda_value <= custo_value) {
     alert("Operação com Prejuízo, verifique os preços");
     return;
   }
+
   let lucroUnitario = venda_value - custo_value;
   let lucroVendaAtual = lucroUnitario * quantidade_value;
   lucroAcumulado = lucroAcumulado + lucroVendaAtual;
 
   localStorage.setItem("lucroAcumulado", lucroAcumulado);
 
-  produto_value = "";
-  custo_value = "";
-  venda_value = "";
-  quantidade_value = "";
+  htmlFinal += `<p>Produto Adicionado:${produto_value} <br>
+   Quantidade do Produto: ${quantidade_value} <br>
+    Preço de Custo do Produto : ${custo_value} <br> 
+    Preço de Venda do Produto : ${venda_value}</p>`;
+
+  resp_produto.innerHTML = htmlFinal;
+
+  produto.value = "";
+  quantidade.value = "";
+  precoCusto.value = "";
+  precoVenda.value = "";
 }
 
 btn_adicionar.addEventListener("click", () => {
   AdicionarDespesa();
   CalcularMetas();
+});
+
+btn_registrar.addEventListener("click", () => {
+  RegistrarVenda();
 });
