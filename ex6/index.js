@@ -15,16 +15,15 @@ let lucroAcumulado = Number(localStorage.getItem("lucroAcumulado")) || 0;
 function CalcularMetas() {
   let htmlFinal = "";
   let totalDespesas = despesas.reduce((acc, item) => acc + item.valor, 0);
+  let saldoDevedor = totalDespesas - lucroAcumulado;
+  let cor = saldoDevedor > 0 ? "#b90000" : "#2ec500";
+  let status =
+    saldoDevedor > 0 ? "Dívida Ativa, Trabalhe mais" : "Divida paga, parabens!";
+
   produtos.forEach((produto) => {
     let lucro = Number(produto.sell - produto.cost);
 
     let unidadesNecessarias = totalDespesas / lucro;
-    let saldoDevedor = totalDespesas - lucroAcumulado;
-    let cor = saldoDevedor > 0 ? "#b90000" : "#2ec500";
-    let status =
-      saldoDevedor > 0
-        ? "Dívida Ativa, Trabalhe mais"
-        : "Divida paga, parabens!";
 
     htmlFinal += `<p>Para pagar as contas apenas com ${produto.name} <br> 
     venda ${Math.ceil(unidadesNecessarias)} un.
