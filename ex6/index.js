@@ -1,5 +1,5 @@
-const despesas = [];
-const produtos = [];
+let despesas = [];
+let produtos = [];
 const resp_despesa = document.getElementById("resp_despesa");
 const resp_produto = document.getElementById("resp_produto");
 const input_valor = document.getElementById("valor");
@@ -13,15 +13,15 @@ const quantidade = document.getElementById("quantidade");
 let lucroAcumulado = Number(localStorage.getItem("lucroAcumulado")) || 0;
 
 function CarregarSistema() {
-  despesas = localStorage.setItem("lista_despesas");
+  despesas = localStorage.getItem("lista_despesas");
   if (despesas) {
-    despesas.JSON.parse();
+    despesas = JSON.parse(despesas);
   } else {
     despesas = [];
   }
-  produtos = localStorage.setItem("lista_produtos");
+  produtos = localStorage.getItem("lista_produtos");
   if (produtos) {
-    produtos.JSON.parse();
+    produtos = JSON.parse(produtos);
   } else {
     produtos = [];
   }
