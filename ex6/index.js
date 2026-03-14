@@ -12,6 +12,22 @@ const produto = document.getElementById("produto");
 const quantidade = document.getElementById("quantidade");
 let lucroAcumulado = Number(localStorage.getItem("lucroAcumulado")) || 0;
 
+function CarregarSistema() {
+  despesas = localStorage.setItem("lista_despesas");
+  if (despesas) {
+    despesas.JSON.parse();
+  } else {
+    despesas = [];
+  }
+  produtos = localStorage.setItem("lista_produtos");
+  if (produtos) {
+    produtos.JSON.parse();
+  } else {
+    produtos = [];
+  }
+  CalcularMetas();
+}
+
 function CalcularMetas() {
   let htmlFinal = "";
   let totalDespesas = despesas.reduce((acc, item) => acc + item.valor, 0);
@@ -52,7 +68,7 @@ function AdicionarDespesa() {
   };
 
   despesas.push(despesa_obj);
-  localStorage.setItem("despesa", despesa);
+  localStorage.setItem("despesa", JSON.stringify(despesas));
   CalcularMetas();
 }
 
