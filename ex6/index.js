@@ -1,5 +1,5 @@
-let despesas = [];
-let produtos = [];
+let despesas = JSON.parse(localStorage.getItem("lista_despesas")) || [];
+let produtos = JSON.parse(localStorage.getItem("lista_produtos")) || [];
 const resp_despesa = document.getElementById("resp_despesa");
 const resp_produto = document.getElementById("resp_produto");
 const input_valor = document.getElementById("valor");
@@ -11,6 +11,14 @@ const btn_registrar = document.getElementById("btn_registrar");
 const produto = document.getElementById("produto");
 const quantidade = document.getElementById("quantidade");
 let lucroAcumulado = Number(localStorage.getItem("lucroAcumulado")) || 0;
+
+window.onload = CarregarSistema;
+CalcularMetas();
+
+function SalvarTudo() {
+  localStorage.setItem("lista_despesas", JSON.stringify(despesas));
+  localStorage.setItem("lista_produtos", JSON.stringify(produtos));
+}
 
 function CarregarSistema() {
   despesas = localStorage.getItem("lista_despesas");
@@ -68,8 +76,9 @@ function AdicionarDespesa() {
   };
 
   despesas.push(despesa_obj);
-  localStorage.setItem("despesa", JSON.stringify(despesas));
+  localStorage.setItem("lista_despesas", JSON.stringify(despesas));
   CalcularMetas();
+  SalvarTudo();
 }
 
 function RegistrarVenda() {
@@ -110,6 +119,9 @@ function RegistrarVenda() {
   quantidade.value = "";
   precoCusto.value = "";
   precoVenda.value = "";
+
+  SalvarTudo();
+  CalcularMetas();
 }
 
 btn_adicionar.addEventListener("click", () => {

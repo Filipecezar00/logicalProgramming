@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CryptoWatch</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="Container_Principal">
+      <header class="cabecalho">
+        <h1>Bem vindo ao CryptoWatch</h1>
+      </header>
+      <main class="espaco_principal">
+        <section>
+          <h1>DASHBOARD SPACE</h1>
+          <div id="moedas_espaco">exemplo</div>
+        </section>
+
+        <section class="container_calculadora">
+          <h1>Calculadora simples</h1>
+          <label for="moeda_value">valor da moeda</label>
+          <input
+            type="number"
+            placeholder="digite o valor da moeda"
+            required
+            id="moeda_value"
+          />
+
+          <label for="saldo">Seu saldo</label>
+          <input
+            type="number"
+            placeholder="digite o seu saldo"
+            required
+            id="seuSaldo"
+          />
+
+          <button id="btn_calcular">Calcular</button>
+        </section>
+
+        <section id="container_resultado">
+          <div id="resultado"></div>
+        </section>
+      </main>
+    </div>
+  </body>
+  <script src="index.js"></script>
+</html>
