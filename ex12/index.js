@@ -10,6 +10,7 @@ const jogos = [
 
 campo_busca.addEventListener("input", (evento) => {
   const textoDigitado = evento.target.value;
+
   const JogosFiltrados = jogos.filter((jogo) => {
     if (jogo.nome.toLowerCase().includes(textoDigitado.toLowerCase())) {
       return true;
@@ -21,6 +22,12 @@ campo_busca.addEventListener("input", (evento) => {
 function renderizarJogos(lista) {
   try {
     lista_jogos.innerHTML = "";
+
+    if (lista.length === 0) {
+      lista_jogos.innerHTML += `
+            Nenhum jogo encontrado com esse nome
+        `;
+    }
 
     lista.forEach((jogo) => {
       lista_jogos.innerHTML += `
