@@ -6,6 +6,30 @@ const formatador = new Intl.NumberFormat("pt-BR", {
   currency: "BRL",
 });
 
+let favoritos = JSON.parse(localStorage.getItem("minhasMoedas")) || [];
+
+window.favoritarMoeda = function (codigo) {
+  if (!favoritos.includes(codigo)) {
+    favoritos.push(codigo);
+  }
+  localStorage.setItem("minhasMoedas", JSON.stringify(favoritos));
+  renderizarFavoritos();
+};
+
+function renderizarFavoritos() {
+  try {
+    container_favoritados.innerHTML = "";
+    favoritos.forEach((item) => {
+      container_favoritados.innerHTML += `
+        <p>Nome da moeda favoritada: ${item}</p>
+      `;
+    });
+  } catch (erro) {
+    console.error("ERRO AO FAVORITAR MOEDA ", erro);
+    container_favoritados.innerHTML += `ERRO AO FAVORITAR MOEDA`;
+  }
+}
+
 async function buscarDadosApi() {
   try {
     const resposta = await Promise.all([
@@ -25,6 +49,7 @@ async function buscarDadosApi() {
         <p>Nome da moeda: ${itens.name}</p>
         <p>Alta da moeda: ${formatador.format(itens.high)}</p>
         <p>Baixa da moeda: ${formatador.format(itens.low)}</p>
+        <button onclick="favoritarMoeda('${itens.code}')">Favoritar</button>
       </article>
       `;
     });
@@ -32,4 +57,5 @@ async function buscarDadosApi() {
     console.log("ERRO AO REALIZAR BUSCA DE DADOS NA API", erro);
   }
 }
+renderizarFavoritos();
 buscarDadosApi();
