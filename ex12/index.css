@@ -1,0 +1,13 @@
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#lista_jogos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
