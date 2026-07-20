@@ -1,6 +1,11 @@
 const container_favoritados = document.querySelector(".container_favoritados");
 const container_moedas = document.querySelector(".container_moedas");
 
+const formatador = new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+});
+
 async function buscarDadosApi() {
   try {
     const resposta = await Promise.all([
@@ -18,8 +23,8 @@ async function buscarDadosApi() {
       container_moedas.innerHTML += `
       <article>
         <p>Nome da moeda: ${itens.name}</p>
-        <p>Alta da moeda: ${itens.high}</p>
-        <p>Baixa da moeda: ${itens.low}</p>
+        <p>Alta da moeda: ${formatador.format(itens.high)}</p>
+        <p>Baixa da moeda: ${formatador.format(itens.low)}</p>
       </article>
       `;
     });
