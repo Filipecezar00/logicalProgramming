@@ -1,0 +1,20 @@
+// captura dos inputs via dom
+// captura do botao via dom 
+
+// função assincrona de requisição api (parametro:e)
+//prevent default 
+// captar valor atual dos inputs
+// validar dados do formulário 
+// criacao do objeto com dados do formulario 
+
+// bloco try 
+// fetch para a api 
+// coletar resposta
+// traduzir resposta
+// validar resposta 
+// exibir resposta
+
+// bloco catch 
+// validar erros
+
+// colocar listener no botão de envio
