@@ -1,0 +1,16 @@
+[
+  {
+    "numero": "101",
+    "cliente": "João Silva",
+    "vara": "1 vara cível",
+    "status": "Em andamento",
+    "ultimaMovimentacao": "Petição juntada aos autos"
+  },
+  {
+    "numero": "102",
+    "cliente": "Maria Oliveira",
+    "vara": "3 vara Trabalhista",
+    "status": "concluido",
+    "ultimaMovimentacao": "Sentença proferida"
+  }
+]

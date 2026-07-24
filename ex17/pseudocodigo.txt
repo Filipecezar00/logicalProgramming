@@ -1,0 +1,21 @@
+// captura de elementos via dom 
+
+// criaçao da função assincrona 
+
+//-  -   Dentro da função  -  - 
+
+// extrai o valor digitado no input 
+// valida o valor 
+// define mensagem de busca do processo no sistema 
+
+//bloco try
+
+// requisição fetch 
+//captura do dado da requisição 
+//tradução do dado da requisição 
+// procura/filtra os dados retornados 
+// retorno do resultado traduzido if achar coloca na tela else if exibe o não encontrado
+// bloco catch 
+//exibindo erro no console e na tela 
+
+chamando função com listener do botão

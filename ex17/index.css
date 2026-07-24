@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.container_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  border-radius: 20px;
+  height: 250px;
+  padding: 10px;
+}
+
+#inputProcesso {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 15px;
+}
+
+.container_main:hover {
+  background-color: slategray;
+}
+
+#btnBuscar {
+  margin: 5px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#btnBuscar:hover {
+  background-color: rgb(139, 168, 168);
+  color: black;
+  cursor: pointer;
+}
+
+#resultadoProcesso {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+}
