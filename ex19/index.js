@@ -6,6 +6,12 @@ const processos = [
   { numero: "003", cliente: "Maria Souza", urgente: false },
 ];
 
+const valores_processos = [
+  { numero: "001", valor: 1000 },
+  { numero: "002", valor: 2500 },
+  { numero: "003", valor: 500 },
+];
+
 function buscarProcessos(lista) {
   try {
     const urgente = lista.some((processo) => processo.urgente === true);
@@ -21,4 +27,16 @@ function buscarProcessos(lista) {
   }
 }
 
+function calcularValoresAtualizados(lista) {
+  try {
+    lista.map((processo) => {
+      resposta.innerHTML += `<pre>Processo: ${processo.numero} - R$ ${processo.valor}</pre>`;
+    });
+  } catch (error) {
+    console.error("ERRO AO CALCULAR OS VALORES ATUALIZADOS");
+    resposta.innerHTML = `Erro ao calcular os valores atualizados`;
+  }
+}
+
 buscarProcessos(processos);
+calcularValoresAtualizados(valores_processos);
