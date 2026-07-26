@@ -1,0 +1,34 @@
+captura de elementos dom
+
+array transacoes 
+
+funcao de cadastro 
+pegar valor dos inputs 
+validar inputs 
+mensagem carregando 
+bloco try 
+requisição fetch post
+push no array com a resposta da api 
+chamada funcao de renderizar 
+bloco catch
+depurar erros e exibir 
+
+funcao de calculo de saldos
+bloco try 
+some os valores de entrada 
+subtrai os valores de saida 
+
+exibe na tela total de entradas - total de saidas - saldo final se negativo 
+vermelho se positivo verde
+
+btn_todas 
+renderiza todas as transacoes 
+
+btn_entradas
+filtra apenas o que são receitas 
+
+btn_saidas 
+exibe apenas o que são despesas
+
+
+

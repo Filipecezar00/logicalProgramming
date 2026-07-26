@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex21</title>
+  </head>
+  <body>
+    <h2>Nova Transação</h2>
+    <form id="formTransacao">
+      <input type="text" id="descricao" placeholder="Descrição (ex:Aluguel)" />
+      <input type="number" id="valor" placeholder="Valor (R$)" />
+      <select id="tipo">
+        <option value="entrada">Entrada</option>
+        <option value="saida">Saida</option>
+      </select>
+      <button type="submit" id="btnCadastrar">Adicionar Transação</button>
+    </form>
+    <p id="mensagem"></p>
+    <hr />
+    <h2>Resumo Financeiro</h2>
+    <div>
+      <p>Entradas: R$ <span id="totalEntradas">0</span></p>
+      <p>Saídas: R$ <span id="totalSaidas">0</span></p>
+      <p>Saldo Total: R$ <span id="saldoTotal">0</span></p>
+    </div>
+    <hr />
+    <h2>Extrato</h2>
+    <button id="btnFiltroTodas">Todas</button>
+    <button id="btnFiltroEntradas">Apenas Entradas</button>
+    <button id="btnFiltroSaidas">Apenas Saídas</button>
+
+    <div id="containerTransacoes"></div>
+  </body>
+</html>
