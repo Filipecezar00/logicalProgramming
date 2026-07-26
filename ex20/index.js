@@ -65,5 +65,12 @@ function renderizarProcessos(lista) {
   }
 }
 
+btn_filtrar.addEventListener("click", function () {
+  const processosFiltrados = Processos.filter((processo) => {
+    return processo.valor > 2000;
+  });
+  renderizarProcessos(processosFiltrados);
+});
+
 btn_cadastrar.addEventListener("click", cadastrarProcesso);
 renderizarProcessos(Processos);
