@@ -79,5 +79,16 @@ btn_ordenar.addEventListener("click", function () {
   renderizarProcessos(processosOrdenados);
 });
 
+btn_urgencia.addEventListener("click", function () {
+  const processosUrgentes = Processos.some((processo) => {
+    return processo.valor > 10000;
+  });
+  if (processosUrgentes) {
+    mensagem.innerHTML = `<p>Existem processos urgentes</p>`;
+  } else {
+    mensagem.innerHTML = `<p>Não existem processos urgentes</p>`;
+  }
+});
+
 btn_cadastrar.addEventListener("click", cadastrarProcesso);
 renderizarProcessos(Processos);
