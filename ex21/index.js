@@ -47,6 +47,7 @@ async function cadastrarTransacao(e) {
     mensagem.innerHTML = "";
 
     renderizarTransacoes(transacoes);
+    AtualizarValores();
   } catch (error) {
     console.log("ERRO DURANTE O PROCESSO DE CADASTRAR TRANSAÇÃO", error);
     mensagem.innerHTML = `Erro durante o processo de cadastrar transação`;
@@ -64,3 +65,44 @@ function renderizarTransacoes(lista) {
     mensagem.innerHTML = `ERRO AO REALIZAR RENDERIZAÇÃO DAS TRANSAÇÕES`;
   }
 }
+
+function AtualizarValores() {
+  try {
+    const entradas = transacoes.filter(
+      (transacao) => transacao.tipo === "entrada",
+    );
+
+    const saidas = transacoes.filter((transacao) => transacao.tipo === "saida");
+
+    const total_Saidas = saidas.reduce(
+      (acumulador, transacao) => acumulador + transacao.valor,
+      0,
+    );
+
+    const total_Entradas = entradas.reduce(
+      (acumulador, transacao) => acumulador + transacao.valor,
+      0,
+    );
+
+    let saldo_Total = Number(total_Entradas - total_Saidas);
+
+    saldoTotal.innerHTML = "";
+    totalEntradas.innerHTML = "";
+    totalSaidas.innerHTML = "";
+
+    if (saldo_Total <= 0) {
+      saldoTotal.innerHTML = `<p style="color:red;"> ${saldo_Total}</p>`;
+    } else {
+      saldoTotal.innerHTML = `<p style="color:green;">${saldo_Total}</p>`;
+    }
+
+    totalEntradas.innerHTML = `<p style="color:green;">${total_Entradas}</p>`;
+    totalSaidas.innerHTML = `<p style="color:red;">${total_Saidas}</p>`;
+  } catch (error) {
+    console.log("ERRO AO SOMAR VALORES:", error);
+    mensagem.innerHTML = `ERRO AO SOMAR VALORES`;
+  }
+}
+
+AtualizarValores();
+renderizarTransacoes(transacoes);
