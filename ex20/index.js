@@ -72,5 +72,12 @@ btn_filtrar.addEventListener("click", function () {
   renderizarProcessos(processosFiltrados);
 });
 
+btn_ordenar.addEventListener("click", function () {
+  const processosOrdenados = Processos.sort((a, b) => {
+    return b.valor - a.valor;
+  });
+  renderizarProcessos(processosOrdenados);
+});
+
 btn_cadastrar.addEventListener("click", cadastrarProcesso);
 renderizarProcessos(Processos);
