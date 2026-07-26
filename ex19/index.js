@@ -38,5 +38,22 @@ function calcularValoresAtualizados(lista) {
   }
 }
 
+function gerenciarUrgencias(lista) {
+  try {
+    const processos = lista.sort((a, b) => {
+      return b.valor - a.valor;
+    });
+
+    console.log(processos);
+    processos.forEach((processo) => {
+      resposta.innerHTML += `<pre>Processos ordenados por ordem de valor: R$ ${processo.valor}</pre>`;
+    });
+  } catch (error) {
+    console.log(`ERRO AO REALIZAR RENDERIZAÇÃO DOS PROCESSOS:`, error);
+    resposta.innerHTML = `Erro ao realizar renderização dos processos`;
+  }
+}
+
 buscarProcessos(processos);
 calcularValoresAtualizados(valores_processos);
+gerenciarUrgencias(valores_processos);
