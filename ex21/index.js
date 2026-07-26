@@ -45,6 +45,8 @@ async function cadastrarTransacao(e) {
     transacoes.push(resultado);
 
     mensagem.innerHTML = "";
+    descricao.value = "";
+    valor.value = "";
 
     renderizarTransacoes(transacoes);
     AtualizarValores();
@@ -103,6 +105,27 @@ function AtualizarValores() {
     mensagem.innerHTML = `ERRO AO SOMAR VALORES`;
   }
 }
+document
+  .getElementById("formTransacao")
+  .addEventListener("submit", cadastrarTransacao);
+
+btnFiltroTodas.addEventListener("click", () => {
+  renderizarTransacoes(transacoes);
+});
+
+btnFiltroEntradas.addEventListener("click", () => {
+  const filtragem = transacoes.filter(
+    (transacao) => transacao.tipo === "entrada",
+  );
+  renderizarTransacoes(filtragem);
+});
+
+btnFiltroSaidas.addEventListener("click", () => {
+  const filtragem = transacoes.filter(
+    (transacao) => transacao.tipo === "saida",
+  );
+  renderizarTransacoes(filtragem);
+});
 
 AtualizarValores();
 renderizarTransacoes(transacoes);
