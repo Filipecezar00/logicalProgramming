@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <h2>Cadastrar Novo Processo</h2>
+    <h2 class="title">Cadastrar Novo Processo</h2>
     <form id="formProcesso">
       <input type="text" id="numero" placeholder="Número do Processo" />
       <input type="text" id="cliente" placeholder="Nome do Cliente" />
@@ -19,12 +19,14 @@
 
     <hr />
 
-    <h2>Ações do painel</h2>
-    <button id="btn_filtrar">Ver causas > R$2.000</button>
-    <button id="btn_ordenar">Ordenar por Maior valor</button>
-    <button id="btn_urgencia">Verificar Alerta de Urgência</button>
+    <h2 class="title">Ações do painel</h2>
+    <div class="container_btns">
+      <button id="btn_filtrar">Ver causas > R$2.000</button>
+      <button id="btn_ordenar">Ordenar por Maior valor</button>
+      <button id="btn_urgencia">Verificar Alerta de Urgência</button>
+    </div>
 
-    <h2>Lista de processos</h2>
+    <h2 class="title">Lista de processos</h2>
     <div id="containerProcessos"></div>
   </body>
   <script src="index.js"></script>
