@@ -11,11 +11,15 @@ const containerTransacoes = document.getElementById("containerTransacoes");
 const descricao = document.getElementById("descricao");
 const valor = document.getElementById("valor");
 
-let transacoes = [
-  { descricao: "salario", valor: 10000, tipo: "entrada" },
-  { descricao: "conta de luz", valor: 400, tipo: "saida" },
-  { descricao: "Aluguel", valor: 3000, tipo: "entrada" },
-];
+let memoria = localStorage.getItem("transacoes");
+
+let transacoes = memoria
+  ? JSON.parse(memoria)
+  : [
+      { descricao: "salario", valor: 10000, tipo: "entrada" },
+      { descricao: "conta de luz", valor: 400, tipo: "saida" },
+      { descricao: "Aluguel", valor: 3000, tipo: "entrada" },
+    ];
 
 async function cadastrarTransacao(e) {
   e.preventDefault();
@@ -43,6 +47,8 @@ async function cadastrarTransacao(e) {
 
     const resultado = await reqApi.json();
     transacoes.push(resultado);
+
+    localStorage.setItem("transacoes", JSON.stringify(transacoes));
 
     mensagem.innerHTML = "";
     descricao.value = "";
