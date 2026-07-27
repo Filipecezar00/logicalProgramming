@@ -1,0 +1,17 @@
+captura de elementos dom 
+
+
+funcao uploadApi(e)
+try
+preventDefault 
+criação da instância new FormData(); 
+anexando o arquivo de imagem via: formData.append("foto",arquivo); 
+atualizar mensagem na tela "carregando"
+desabilite o botão
+envio post com o fetch para a api
+
+retorno upload realizado!
+catch 
+prevenir erros
+
+btn.listener()
