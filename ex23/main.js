@@ -18,3 +18,14 @@ async function CadastrarLivro() {
     console.log("ERRO AO CADASTRAR LIVRO:", error);
   }
 }
+
+async function ListarLivros() {
+  try {
+    const listagem = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const resposta = JSON.parse(listagem.json);
+
+    lista_livros.innerHTML += `<li>${resposta}</li>`;
+  } catch (error) {
+    console.log("ERRO AO LISTAR LIVROS:", error);
+  }
+}
