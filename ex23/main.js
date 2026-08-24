@@ -4,7 +4,8 @@ const autor = document.getElementById("autor");
 const ano = document.getElementById("ano");
 const btn_enviar = document.getElementById("btn_enviar");
 const lista_livros = document.getElementById("lista_livros");
-const error = document.getElementById("error");
+const mensagem = document.getElementById("mensagem");
+let livros = [];
 
 async function CadastrarLivro() {
   let titulo_value = titulo.value;
@@ -22,9 +23,9 @@ async function CadastrarLivro() {
     });
     const resposta = JSON.parse(req_post.json);
 
-    error.innerHTML = `Livro : ${resposta} cadastrado com sucesso !`;
+    mensagem.innerHTML = `Livro : ${resposta} cadastrado com sucesso !`;
 
-    lista_livros.innerHTML += `<li>${resposta}</li>`;
+    livros.push(resposta);
   } catch (error) {
     console.log("ERRO AO CADASTRAR LIVRO:", error);
   }
@@ -35,7 +36,14 @@ async function ListarLivros() {
     const req_get = await fetch("https://jsonplaceholder.typicode.com/posts");
     const resposta = JSON.parse(req_get.json);
 
-    lista_livros.innerHTML += `<li>${resposta}</li>`;
+    livros.push(resposta);
+    livros.map(
+      (livro) =>
+        (lista_livros.innerHTML += `<p>Titulo: ${livro.titulo}
+         \n Ano: ${livro.ano} \n Autor:${livro.autor}</p>
+         <button onclick="editarLivro(id)">Editar</button> 
+         \n <button onclick="deletarLivro(id)">Excluir</button>`),
+    );
   } catch (error) {
     console.log("ERRO AO LISTAR LIVROS:", error);
   }
@@ -58,10 +66,32 @@ async function editarLivro(id) {
       },
     );
     const resposta = JSON.parse(req_put.json());
+    livros.push(resposta);
 
-    error.innerHTML = `Editado com sucesso!`;
-    lista_livros.innerHTML += `<li>${resposta}</li>`;
+    mensagem.innerHTML = `Editado com sucesso!`;
   } catch (error) {
     console.log("ERRO AO EDITAR LIVRO:", error);
   }
 }
+
+async function deletarLivro(id) {
+  try {
+    const req_delete = await fetch(
+      `https://jsonplaceholder.typicode.com/posts/${id}`,
+      {
+        method: "DELETE",
+      },
+    );
+    const resposta = JSON.parse(req_delete.json());
+
+    error.innerHTML = `${resposta} excluido com sucesso!`;
+
+    let livros_filtrados = livros.filter((idlivro) => idlivro !== id);
+
+    lista_livros.innerHTML += `${livros_filtrados}`;
+  } catch (error) {
+    console.error("ERRO AO REALIZAR EXCLUSÃO DO LIVRO:", error);
+  }
+}
+btn_enviar.addEventListener("click", () => CadastrarLivro());
+form.addEventListener((e) => e.preventDefault());
