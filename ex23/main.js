@@ -15,13 +15,14 @@ async function CadastrarLivro() {
   try {
     const req_post = await fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
+      "Content-Type": "application/json",
       body: JSON.stringify({
-        titulo: titulo_value,
-        ano: ano_value,
-        autor: autor_value,
+        title: titulo_value,
+        body: autor_value,
       }),
     });
-    const resposta = JSON.parse(req_post.json);
+
+    const resposta = await req_post.json();
 
     mensagem.innerHTML = `Livro : ${resposta} cadastrado com sucesso !`;
 
@@ -31,19 +32,20 @@ async function CadastrarLivro() {
   }
 }
 
-async function ListarLivros() {
+async function ListarLivros(id) {
   try {
     const req_get = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const resposta = JSON.parse(req_get.json);
+    const resposta = await req_get.json();
 
-    livros.push(resposta);
-    livros.map(
+    let texto = "";
+    resposta.forEach(
       (livro) =>
-        (lista_livros.innerHTML += `<p>Titulo: ${livro.titulo}
-         \n Ano: ${livro.ano} \n Autor:${livro.autor}</p>
-         <button onclick="editarLivro(id)">Editar</button> 
-         \n <button onclick="deletarLivro(id)">Excluir</button>`),
+        (texto += `<p>Titulo: ${livro.title}
+       \n Autor:${livro.body}</p>
+         <button onclick="editarLivro(${livro.id})">Editar</button> 
+         \n <button onclick="deletarLivro(${livro.id})">Excluir</button>`),
     );
+    lista_livros.innerHTML = texto;
   } catch (error) {
     console.log("ERRO AO LISTAR LIVROS:", error);
   }
@@ -58,6 +60,7 @@ async function editarLivro(id) {
       `https://jsonplaceholder.typicode.com/posts/${id}`,
       {
         method: "PUT",
+        "Content-Type": "application/json",
         body: JSON.stringify({
           titulo: titulo_value,
           ano: ano_value,
@@ -94,4 +97,4 @@ async function deletarLivro(id) {
   }
 }
 btn_enviar.addEventListener("click", () => CadastrarLivro());
-form.addEventListener((e) => e.preventDefault());
+form.addEventListener("submit", (e) => e.preventDefault());
