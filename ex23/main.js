@@ -9,24 +9,33 @@ let livros = [];
 
 async function CadastrarLivro() {
   let titulo_value = titulo.value;
-  let ano_value = Number(ano.value);
   let autor_value = autor.value;
 
   try {
     const req_post = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      headers: {
+        "Content-type": "application/json",
+      },
       method: "POST",
-      "Content-Type": "application/json",
       body: JSON.stringify({
         title: titulo_value,
         body: autor_value,
       }),
     });
 
+    if (!req_post.ok) {
+      return (mensagem.innerHTML = `Erro ao executar requisição`);
+    }
+
     const resposta = await req_post.json();
 
-    mensagem.innerHTML = `Livro : ${resposta} cadastrado com sucesso !`;
-
     livros.push(resposta);
+
+    mensagem.innerHTML = `Livro: ${resposta.title} do autor ${resposta.body} cadastrado com sucesso!`;
+    ListarLivros();
+
+    titulo.value = "";
+    autor.value = "";
   } catch (error) {
     console.log("ERRO AO CADASTRAR LIVRO:", error);
   }
@@ -85,13 +94,26 @@ async function deletarLivro(id) {
         method: "DELETE",
       },
     );
-    const resposta = JSON.parse(req_delete.json());
+    if (!req_delete.ok) {
+      return (mensagem.innerHTML = `Erro ao deletar livro`);
+    }
+    const resposta = await req_delete.json();
 
-    error.innerHTML = `${resposta} excluido com sucesso!`;
+    mensagem.innerHTML = `Livro ${id} excluido com sucesso!`;
 
-    let livros_filtrados = livros.filter((idlivro) => idlivro !== id);
+    let livros_filtrados = livros.filter((livro) => livro.id !== id);
 
-    lista_livros.innerHTML += `${livros_filtrados}`;
+    livros = livros_filtrados;
+
+    lista_livros.innerHTML = "";
+    let texto = "";
+    livros.forEach((livro) => {
+      texto += `<p>Livro: ${livro.title} - Autor:${livro.body}</p>
+      <button onclick="deletarLivro(${livro.id})">Deletar</button>
+      <button onclick="editarLivro(${livro.id})">Editar</button>
+      `;
+    });
+    lista_livros.innerHTML = texto;
   } catch (error) {
     console.error("ERRO AO REALIZAR EXCLUSÃO DO LIVRO:", error);
   }
