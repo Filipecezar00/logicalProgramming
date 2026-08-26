@@ -1,7 +1,6 @@
 const form = document.getElementById("form");
 const titulo = document.getElementById("titulo");
 const autor = document.getElementById("autor");
-const ano = document.getElementById("ano");
 const btn_enviar = document.getElementById("btn_enviar");
 const lista_livros = document.getElementById("lista_livros");
 const mensagem = document.getElementById("mensagem");
@@ -62,25 +61,42 @@ async function ListarLivros(id) {
 
 async function editarLivro(id) {
   let titulo_value = titulo.value;
-  let ano_value = Number(ano.value);
   let autor_value = autor.value;
   try {
     const req_put = await fetch(
       `https://jsonplaceholder.typicode.com/posts/${id}`,
       {
         method: "PUT",
-        "Content-Type": "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          titulo: titulo_value,
-          ano: ano_value,
-          autor: autor_value,
+          title: titulo_value,
+          body: autor_value,
+          id: id,
         }),
       },
     );
-    const resposta = JSON.parse(req_put.json());
-    livros.push(resposta);
+    if (!req_put.ok) {
+      return (mensagem.innerHTML = `Erro ao atualizar livro`);
+    }
+    const resposta = await req_put.json();
 
+    let texto = "";
+    livros = livros.map((livro) => (livro.id === id ? resposta : livro));
+
+    livros.forEach((livro) => {
+      texto += `<p>Livro: ${livro.title} - Autor: ${livro.body}</p>
+    <button onclick="deletarLivro(${livro.id})">Deletar</button>
+    <button onclick="editarLivro(${livro.id})">Editar</button>
+    `;
+    });
+    lista_livros.innerHTML = texto;
     mensagem.innerHTML = `Editado com sucesso!`;
+
+    titulo.value = "";
+
+    autor.value = "";
   } catch (error) {
     console.log("ERRO AO EDITAR LIVRO:", error);
   }
@@ -109,7 +125,7 @@ async function deletarLivro(id) {
     let texto = "";
     livros.forEach((livro) => {
       texto += `<p>Livro: ${livro.title} - Autor:${livro.body}</p>
-      <button onclick="deletarLivro(${livro.id})">Deletar</button>
+      <button onclick="deletarLivro(${livro.id})">Excluir</button>
       <button onclick="editarLivro(${livro.id})">Editar</button>
       `;
     });
